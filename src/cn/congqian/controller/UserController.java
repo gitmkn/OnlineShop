@@ -1,8 +1,8 @@
 package cn.congqian.controller;
 
 import java.io.IOException;
+import java.io.Writer;
 import java.lang.reflect.Method;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,10 +10,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import cn.congqian.model.AdminUser;
 import cn.congqian.model.User;
 import cn.congqian.service.FactoryService;
 import cn.congqian.service.UserService;
+import cn.congqian.utils.Md5Util;
 
 
 @WebServlet(urlPatterns= {"*.udo"})
@@ -47,98 +50,51 @@ public class UserController extends HttpServlet {
 			System.out.println("调用"+mn+"方法失败");
 		}
 	}
-	
+	private void userList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<User> list = null;
+		try {
+			list = userServer.userList();
+			System.out.println(list);
+			
+			resp.setCharacterEncoding("utf-8");
+			resp.getWriter().write(list.toString().replace(" ", ""));
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("查询用户列表时发生异常");
+		}
+	}
 	/**
-	 * 用户注册
+	 * 用户登录
 	 * @param req
 	 * @param resp
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+	private void Login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		User user = new User();
-		user.setUsername(req.getParameter("username"));
-		user.setPassword(req.getParameter("password"));
-		user.setAddress(req.getParameter("address"));
-		user.setPhoneNo(req.getParameter("phoneNo"));
-		user.setRegDate(new Date());
-		int rows = userServer.save(user);
-		if(rows>0) {
-			resp.sendRedirect(req.getContextPath()+"/index.jsp");
-		}else {
-			resp.sendRedirect(req.getContextPath()+"/error.jsp");
+		String phone = req.getParameter("phone");
+		String pwd = req.getParameter("password");
+		if(phone != null || pwd != null) {
+			String password1 = new Md5Util().getMd5(pwd);
+			user.setPhone(phone);
+			user.setPassword(password1);		
+			User user1 = userServer.userLogin(user);
+			HttpSession session = req.getSession();
+			System.out.println(user);
+			System.out.println(user1);
+			if(user1 != null) {
+				session.setAttribute("UserInfo", user1);
+				resp.sendRedirect(req.getContextPath()+"/jsp/index.jsp");
+			}else {
+				System.out.println("登录失败，账号或者密码错误");
+				resp.sendRedirect(req.getContextPath()+"/jsp/login.jsp");
+			}
 		}
 	}
-	/**
-	 * 实现首页的模糊查询
-	 * @param req
-	 * @param resp
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	private void query(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String username = req.getParameter("username");
-		String address = req.getParameter("address");
-		String phoneNo = req.getParameter("phoneNo");
-		String regex = "[`~!@#$%^&*()_+{}':;',.<>/?~！@#￥%……&*（）&ndash;-|{}【】‘’；：“”。，、？]";
-		username = username.replaceAll(regex, "");//符号屏蔽
-		address = address.replaceAll(regex, "");
-		phoneNo = phoneNo.replaceAll(regex, "");
-		List<User> list = userServer.query(username,address,phoneNo);
-		req.setAttribute("userList", list);
-		req.getRequestDispatcher("/index.jsp").forward(req, resp);
-	}
-	/**
-	 * 用户删除
-	 * @param req
-	 * @param resp
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void exit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		session.invalidate();
+		resp.sendRedirect(req.getContextPath()+"/jsp/index.jsp");
 
-		int id = Integer.parseInt(req.getParameter("id"));
-		int rows = userServer.deletUserById(id);
-		if(rows>0) {
-			resp.sendRedirect(req.getContextPath()+"/index.jsp");
-		}else {
-			resp.sendRedirect(req.getContextPath()+"/error.jsp");
-		}
-	}
-	private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		int id = Integer.parseInt(req.getParameter("id"));
-		User user = userServer.get(id);
-		req.setAttribute("user", user);//注入
-		req.getRequestDispatcher("/update.jsp").forward(req, resp);
-	}
-	private void updatedo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		int id = Integer.parseInt(req.getParameter("id"));
-		//通过id，把数据库中原来的user信息拿到
-		User user = userServer.get(id);//原来的user
-		
-		String yUsername = user.getUsername();
-		String xUsername = req.getParameter("username");
-		System.out.println(xUsername);
-		long cout = userServer.getCountByName(xUsername);//查询数据库中有没有新输入的名字
-		//System.out.println(cout);
-		if (!xUsername.equals(yUsername) && cout>0) {//首先新名字和原名不一样
-			req.setAttribute("note", xUsername+"，这个名字已被占用");
-			req.getRequestDispatcher("/update.udo?id="+id).forward(req, resp);
-			return;
-		}
-		user.setUsername(xUsername);
-		user.setPassword(req.getParameter("password"));
-		user.setAddress(req.getParameter("address"));
-		user.setPhoneNo(req.getParameter("phoneNo"));
-		
-		int rows = userServer.updateUserById(user);
-		if(rows>0) {
-			resp.sendRedirect(req.getContextPath()+"/index.jsp");
-		}else {
-			resp.sendRedirect(req.getContextPath()+"/error.jsp");
-		}
 	}
 }

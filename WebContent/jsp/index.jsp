@@ -124,10 +124,6 @@
 		</div>
 
 
-
-
-
-
 		<div class="hot-recommend-con">
 			<div class="hot-con1 w1200 layui-clear">
 				<div class="item">

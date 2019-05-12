@@ -11,7 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/css/jquery.dialog.css" />
 		<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/jquery.js"></script>
 		<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/global.js"></script>
-		<title>企业OA办公后台管理模板</title>
+		<title>卡通玩具销售系统</title>
 	</head>
 
 	<body>
@@ -42,7 +42,7 @@
 							<li>
 								<a href="javascript:;">帮助</a>
 							</li>
-							<li>
+							<li href="${ pageContext.request.contextPath }/exit.audo">
 								<a href="javascript:;" class="close-btn exit"></a>
 							</li>
 						</ul>
@@ -86,7 +86,7 @@
 			<div id="ft" class="ue-clear">
 				<div class="ft1 ue-clear">
 					<i class="ft-icon1"></i> 
-					<em>XXX商城后台管理系统</em>
+					<em>卡通玩具销售系统</em>
 				</div>
 				<div class="ft2 ue-clear">
 					<!--<span>Call Center</span>-->

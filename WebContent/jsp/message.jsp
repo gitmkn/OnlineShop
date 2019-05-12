@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>卡通玩具销售系统</title>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.request.contextPath }/res/static/css/main.css">
 <link rel="stylesheet" type="text/css"

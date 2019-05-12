@@ -11,7 +11,7 @@
 	href="${ pageContext.request.contextPath }/admin/css/skin_/login.css" />
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/admin/js/jquery.js"></script>
-<title>XXX商城后台管理系统登录</title>
+<title>卡通玩具销售系统后台登录</title>
 </head>
 
 <body>

@@ -1,6 +1,7 @@
 package cn.congqian.service;
 
 import java.util.List;
+
 import cn.congqian.model.User;
 
 public interface UserService {

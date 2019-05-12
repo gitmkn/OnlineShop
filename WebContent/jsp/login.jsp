@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>卡通玩具销售系统</title>
   <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/res/static/css/main.css">
   <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/res/layui/css/layui.css">
   <script type="text/javascript" src="${ pageContext.request.contextPath }/res/layui/layui.js"></script>
@@ -35,6 +35,7 @@
                 </div>
               </div>
             </div>
+            <span id="msg"></span>
             <div class="layui-form-item login-btn">
               <div class="layui-input-block">
                 <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">登录</button>
@@ -59,7 +60,7 @@
               layer.msg("请输入正确的手机号");
               return false;
             }
-            var obj=this;
+           /*  var obj=this;
             $.ajax({
                 type:"get",
                 url:"json/login.json",
@@ -78,7 +79,7 @@
                 error:function(msg) {
                     console.log(msg);
                 }
-            }); 
+            });  */
         })
         
     })

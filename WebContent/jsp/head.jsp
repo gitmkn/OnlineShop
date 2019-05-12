@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>卡通玩具商城</title>
+<title>卡通玩具销售系统</title>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.request.contextPath }/res/static/css/main.css">
 <link rel="stylesheet" type="text/css"
@@ -27,7 +27,7 @@
 						<a href="${ pageContext.request.contextPath }/jsp/login.jsp">登录</a>
 					</div>
 					<div class="login">
-						<a href="${ pageContext.request.contextPath }/jsp/login.jsp">注册</a>
+						<a href="${ pageContext.request.contextPath }/jsp/registered.jsp">注册</a>
 					</div>
 				</c:if>
 				<c:if test="${ UserInfo != null}">
@@ -38,7 +38,7 @@
 						<a href="${ pageContext.request.contextPath }/exit.udo">退出</a>
 					</div>
 				<div class="sp-cart">
-					<a href="${ pageContext.request.contextPath }/jsp/shopcart.jsp">购物车</a><span>2</span>
+					<a href="${ pageContext.request.contextPath }/jsp/shopcar.jsp">购物车</a><span>2</span>
 				</div>
 				</c:if>
 			</div>

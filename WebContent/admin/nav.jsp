@@ -25,63 +25,85 @@
 						<li class="nav-li">
 							<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">用户管理</span></a>
 							<ul class="subnav">
-								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/user/userList.jsp" data-id="1">
+								<li class="subnav-li" href="index.html" data-id="1">
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">首页</span></a>
+								</li>
+								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/user/userList.jsp"  data-id="2">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">用户列表</span></a>
 								</li>
-								<li class="subnav-li" href="form.html" data-id="9">
-									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">新闻频道管理</span></a>
-								</li>
-								<li class="subnav-li" href="table.html" data-id="10">
+								<!-- <li class="subnav-li" href="table.html" data-id="10">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">地方新闻管理</span></a>
 								</li>
 								<li class="subnav-li" data-id="11">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">自定义设置1</span></a>
-								</li>
+								</li> -->
 							</ul>
 						</li>
 						<li class="nav-li current">
 							<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">商品管理</span></a>
 							<ul class="subnav">
-								<li class="subnav-li current" href="index.html" data-id="8">
-									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">首页</span></a>
+								<li class="subnav-li current" href="${ pageContext.request.contextPath }/admin/goods/goodsList.jsp" data-id="8">
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">商品列表</span></a>
 								</li>
-								<li class="subnav-li" href="form.html" data-id="2">
-									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">表单</span></a>
+								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/goods/goodsAdd.jsp" data-id="9">
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">添加商品</span></a>
 								</li>
-								<li class="subnav-li" href="table.html" data-id="3">
+								<!-- <li class="subnav-li" href="table.html" data-id="3">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">表格</span></a>
 								</li>
 								<li class="subnav-li" data-id="4">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">自定义设置2</span></a>
-								</li>
+								</li> -->
 							</ul>
 						</li>
 						<li class="nav-li">
 							<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">订单管理</span></a>
 							<ul class="subnav">
-								<li class="subnav-li" data-id="5">
-									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">工作安排查询1</span></a>
+								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/order/orderList.jsp" data-id="5">
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">订单列表</span></a>
 								</li>
-								<li class="subnav-li" data-id="6">
-									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">安排管理1</span></a>
+								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/order/orderUpdate.jsp" data-id="6">
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">订单详情查询</span></a>
 								</li>
-								<li class="subnav-li" data-id="7">
+								<!-- <li class="subnav-li" data-id="7">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">类型选择1</span></a>
+								</li> -->
+							</ul>
+						</li>
+						<li class="nav-li last-nav-li">
+							<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">入库管理</span></a>
+							<ul class="subnav">
+								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/warehouse/warehouseList.jsp" data-id="14">
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">入库列表</span></a>
+								</li>
+								<%-- <li class="subnav-li" href="${ pageContext.request.contextPath }/admin/warehouse/warehouseUpdate.jsp" data-id="13">
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">入库信息修改</span></a>
+								</li> --%>
+							</ul>
+						</li>
+						<li class="nav-li last-nav-li">
+							<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">供应商管理</span></a>
+							<ul class="subnav">
+								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/supplier/supplierList.jsp" data-id="15">
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">供应商列表</span></a>
+								</li>
+								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/supplier/supplierAdd.jsp" data-id="16">
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">添加供应商</span></a>
 								</li>
 							</ul>
 						</li>
 						<li class="nav-li last-nav-li">
 							<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">系统设置</span></a>
 							<ul class="subnav">
-								<li class="subnav-li" data-id="12">
-									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">工作安排查询2</span></a>
+								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/user/passwordUpdate.jsp" data-id="12">
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">修改密码</span></a>
 								</li>
-								<li class="subnav-li" data-id="13">
+								<!-- <li class="subnav-li" data-id="13">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">安排管理2</span></a>
 								</li>
 								<li class="subnav-li" data-id="14">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">类型选择2</span></a>
-								</li>
+								</li> -->
 							</ul>
 						</li>
 					</ul>

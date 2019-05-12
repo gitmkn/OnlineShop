@@ -75,4 +75,11 @@ public class UserAdminController extends HttpServlet {
 			}
 		}
 	}
+	private void exit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("123");
+		HttpSession session = req.getSession();
+		session.invalidate();
+		resp.sendRedirect(req.getContextPath()+"/admin/login.jsp");
+
+	}
 }

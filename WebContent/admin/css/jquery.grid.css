@@ -90,7 +90,7 @@
 
 /*表格无数据 、加载中*/
 .ui-table-tbody .ui-nodata-tip{position:absolute;top:50px;left:50%;margin:35px 0 0 -130px;width:6em;}
-.ui-table-loading{position:absolute;top:60px;left:50%;height:64px;margin:35px 0 0 -130px;padding-left:74px;line-height:64px;font-size:24px;color:#C7C7C7;background:url(img/table/loading.gif) no-repeat left center;}
+.ui-table-loading{position:absolute;top:60px;left:50%;height:64px;margin:35px 0 0 -130px;padding-left:74px;line-height:64px;font-size:24px;color:#C7C7C7;background:url(zTreeStyle/img/loading.gif) no-repeat left center;}
 
 
 

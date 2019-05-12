@@ -13,6 +13,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> userList() {
 		// TODO Auto-generated method stub
+		/*List<User> list = userDao.userList();
+		String str = "";
+		for(int i = 0; i <= list.size() - 1; i++) {
+			if(i == list.size() - 1) {
+				str += "['" + list.get(i).getId() + "','" + list.get(i).getUsername() + "','" + list.get(i).getPhone() + "','" + list.get(i).getEmail() + "','" + list.get(i).getAddress() + "','" + list.get(i).getCreatetime() + "','" + list.get(i).getStatus() + "',oper]";
+				str.replaceAll(" ", "");
+			}else {
+				str += "['" + list.get(i).getId() + "','" + list.get(i).getUsername() + "','" + list.get(i).getPhone() + "','" + list.get(i).getEmail() + "','" + list.get(i).getAddress() + "','" + list.get(i).getCreatetime() + "','" + list.get(i).getStatus() + "',oper],";
+				str.replaceAll(" ", "");
+			}
+		}
+		str += "]";
+		System.out.println(str);*/
 		return userDao.userList();
 	}
 

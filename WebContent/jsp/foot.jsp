@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>卡通玩具销售系统e</title>
 </head>
 <body>
 	<div class="footer">

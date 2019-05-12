@@ -83,11 +83,11 @@ public class User {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	@Override
-	public String toString() {
-		/*return "[id=" + id + ", username=" + username + ", password=" + password + ", phone=" + phone + ", email="
-				+ email + ", address=" + address + ", createtime=" + createtime + ", status=" + status + "]";*/
-		return "[\""+ id + "\",\"" + username + "\",\"" + phone + "\",\""+ email + "\",\"" + address + "\",\"" + createtime + "\",\"已审核\",oper]";
-	}
+//	@Override
+//	public String toString() {
+//		return "{id:" + id + ", username:" + username + ", password:" + password + ", phone:" + phone + ", email:"
+//				+ email + ", address:" + address + ", createtime:" + createtime + ", status:" + status + "}";
+		/*return "[\""+ id + "\",\"" + username + "\",\"" + phone + "\",\""+ email + "\",\"" + address + "\",\"" + createtime + "\",\"已审核\",oper]";*/
+//	}
 	
 }

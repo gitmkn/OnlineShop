@@ -12,30 +12,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 </head>
 <body>
-<%@ include file="head.jsp" %>
+<%@ include file="../head.jsp" %>
   <div class="content content-nav-base commodity-content">
-    <%@ include file="nav.jsp" %>
+    <%@ include file="../nav.jsp" %>
     <div class="commod-cont-wrap">
       <div class="commod-cont w1200 layui-clear">
-        <div class="left-nav">
-          <div class="title">个人中心</div>
-          <div class="list-box">
-            <dl>
-             <dt>我的中心</dt>
-             <dd><a href="javascript:;">购物车</a></dd>
-             <dd><a href="javascript:;">我的订单</a></dd>
-            </dl>
-            <dl>
-             <dt>我的账号</dt>
-             <dd><a href="javascript:;">我的资料</a></dd>
-             <dd><a href="javascript:;">修改密码</a></dd>
-             <dd><a href="javascript:;">退出</a></dd>
-            </dl>
-          </div>
-        </div>
+        <%@ include file="personal_nav.jsp"%>
         <div class="right-cont-wrap">
           <div class="right-cont">
-            <div class="sort layui-clear">
+            <!-- <div class="sort layui-clear">
               <a class="active" href="javascript:;" event = 'volume'>销量</a>
               <a href="javascript:;" event = 'price'>价格</a>
               <a href="javascript:;" event = 'newprod'>新品</a>
@@ -43,7 +28,7 @@
             </div>
             <div class="prod-number">
               <span>200个</span>
-            </div>
+            </div> -->
             <div class="cont-list layui-clear" id="list-cont">
               <div class="item">
                 <div class="img">
@@ -243,7 +228,7 @@
                 </div>
               {{# }); }}
             </script> -->
-            <div id="demo0" style="text-align: center;"></div>
+            
           </div>
         </div>
       </div>

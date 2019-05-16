@@ -9,4 +9,11 @@ public interface AdminUserService {
 	 * @return
 	 */
 	public AdminUser AdminLogin(AdminUser user);
+	
+	/**
+	 * 管理员修改密码
+	 * @param user
+	 * @return
+	 */
+	public int updatePassword(AdminUser user);
 }

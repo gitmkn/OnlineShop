@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="../control.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -170,7 +171,7 @@
 					window.location.href="../warehouse/warehouseAdd.jsp";
 				}}]
 	
- 	var tbody = [
+/*  	var tbody = [
 					["201905030912","音乐安抚毛绒玩具 喜洋洋卡通安抚音乐婴儿睡眠玩具可爱","30.00","99","毛绒玩具","2019-01-18","热卖",oper], 
 					["201905030915","小考拉毛绒玩具玩偶仿真无尾熊树袋熊公仔毛绒布艺玩具生日礼物","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
 					["201905030916","搞怪变身小公仔毛绒玩具蜡笔小新玩偶叮当毛绒布艺类玩具","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
@@ -178,22 +179,39 @@
 					["201905030918","趴猴长臂猴子长尾猴小公仔猴毛绒玩具","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
 					["201905030919","背带兔毛绒玩具公仔可爱布娃娃","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
 					["201905030920","思丹乐毛绒安抚玩具婴儿可入口宝宝啃咬玩偶哄睡手偶表演手套娃娃","30.00","99","毛绒玩具","2019-01-18","热卖",oper]
-				]
-		/* var data1 = null;
-		var tbody;
-		$.ajax({
-			type:"GET",
-            url:"${ pageContext.request.contextPath }/userList.udo",
-            success:function(data){
-                if(data != null){
-                	console.log(data);
-                	data1 = data;
-                }
-            },
-            error:function(){
-                alert("请求错误");
-            }
-		});	 */
+				] */
+	var tbody = [];
+	var str1;
+	$.ajax({
+		type : "GET",
+		url : "${ pageContext.request.contextPath }/goodsList.gado",
+		success : function(data) {
+			if (data != null) {
+				//console.log(data);
+				str1 = JSON.parse(data);
+				/* for(var i=0;i<=str1.length;i++){ */
+				for ( var i in str1) {
+					var arr = []
+					arr[0] = str1[i].goods_id;
+					arr[1] = str1[i].goods_name;
+					arr[2] = str1[i].goods_price;
+					arr[3] = str1[i].goods_sum;
+					arr[4] = str1[i].goods_type;
+					arr[5] = str1[i].goods_createtime;
+					arr[6] = str1[i].goods_status;
+					arr[7] = oper;
+
+					tbody[i] = arr;
+					console.log(arr);
+
+				}
+				console.log(tbody);
+			}
+		},
+		error : function() {
+			alert("请求错误");
+		}
+	});
 		
 		$('.grid').Grid({
 			thead: head,

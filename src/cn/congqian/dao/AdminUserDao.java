@@ -15,4 +15,11 @@ public interface AdminUserDao {
 	 * @return
 	 */
 	public AdminUser adminLogin(AdminUser user);
+	
+	/**
+	 * 管理员修改密码
+	 * @param user
+	 * @return
+	 */
+	public int updatePassword(AdminUser user);
 }

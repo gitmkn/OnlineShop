@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
+
 import cn.congqian.model.Goods;
+import cn.congqian.model.GoodsType;
 import cn.congqian.service.FactoryService;
 import cn.congqian.service.GoodsService;
 
@@ -55,16 +58,12 @@ public class GoodsController extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void goodsList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
 			List<Goods> list = goodsService.goodsList();
-			req.setAttribute("goodsList", list);
 			System.out.println(list);
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("查询商品时出错");
-		}
-		req.getRequestDispatcher("/jsp/index.jsp").forward(req, resp);
+			resp.setCharacterEncoding("utf-8");
+			resp.getWriter().write(JSON.toJSONString(list));
 	}
+	
 	private void goods(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("123");
 		try {

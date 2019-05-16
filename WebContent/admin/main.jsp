@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="control.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -42,8 +43,8 @@
 							<li>
 								<a href="javascript:;">帮助</a>
 							</li>
-							<li href="${ pageContext.request.contextPath }/exit.audo">
-								<a href="javascript:;" class="close-btn exit"></a>
+							<li>
+								<a href="${ pageContext.request.contextPath }/exit.audo" class="close-btn exit"></a>
 							</li>
 						</ul>
 					</div>
@@ -96,7 +97,7 @@
 			</div>
 		</div>
 
-		<div class="exitDialog">
+		<!-- <div class="exitDialog">
 			<div class="content">
 				<div class="ui-dialog-icon"></div>
 				<div class="ui-dialog-text">
@@ -110,7 +111,7 @@
 				</div>
 
 			</div>
-		</div>
+		</div> -->
 
 		<!--<div class="opt-panel user-opt" style="top:52px;left:330px;">
 			<ul>
@@ -206,14 +207,14 @@
 		
 		
 
-		$('.exitDialog').Dialog({
+		/* $('.exitDialog').Dialog({
 			title: '提示信息',
 			autoOpen: false,
 			width: 400,
 			height: 200
-		});
+		}); */
 
-		$('.exit').click(function() {
+		/* $('.exit').click(function() {
 			$('.exitDialog').Dialog('open');
 		});
 
@@ -221,10 +222,18 @@
 			$('.exitDialog').Dialog('close');
 
 			if($(this).hasClass('ok')) {
-				window.location.href = "login.html";
+				$.ajax({
+					type:'get',
+					url:'${ pageContext.request.contextPath }/exit.audo',
+					success:function(data){
+						if(data == 1){
+							window.location.href = "${ pageContext.request.contextPath }/admin/login.jsp";
+						}
+					}
+				});
 			}
 		});
-
+ */
 		(function() {
 			var totalWidth = 0,
 				current = 1;

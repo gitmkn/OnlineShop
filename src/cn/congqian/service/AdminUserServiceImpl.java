@@ -13,4 +13,10 @@ public class AdminUserServiceImpl implements AdminUserService {
 		// TODO Auto-generated method stub
 		return adminUserDao.adminLogin(user);
 	}
+
+	@Override
+	public int updatePassword(AdminUser user) {
+		// TODO Auto-generated method stub
+		return adminUserDao.updatePassword(user);
+	}
 }

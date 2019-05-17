@@ -16,6 +16,10 @@ public class User {
 	 */
 	private String password;
 	/**
+	 * 用户性别
+	 */
+	private String sex;
+	/**
 	 * 用户电话
 	 */
 	private String phone;
@@ -53,6 +57,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 	public String getPhone() {
 		return phone;
 	}
@@ -89,5 +99,11 @@ public class User {
 //				+ email + ", address:" + address + ", createtime:" + createtime + ", status:" + status + "}";
 		/*return "[\""+ id + "\",\"" + username + "\",\"" + phone + "\",\""+ email + "\",\"" + address + "\",\"" + createtime + "\",\"已审核\",oper]";*/
 //	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", sex=" + sex + ", phone="
+				+ phone + ", email=" + email + ", address=" + address + ", createtime=" + createtime + ", status="
+				+ status + "]";
+	}
 	
 }

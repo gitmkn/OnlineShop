@@ -18,4 +18,16 @@ public interface UserDao {
 	 * @return
 	 */
 	public User userLogin(User user);
+	/**
+	 * 用户修改信息
+	 * @param user
+	 * @return
+	 */
+	public int update(User user);
+	/**
+	 * 用户修改密码
+	 * @param user
+	 * @return
+	 */
+	public int updatePassword(User user);
 }

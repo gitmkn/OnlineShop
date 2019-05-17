@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,12 +20,15 @@
 		</div>
 		<div class="mod_help w1200">
 			<p>
-				<a href="${ pageContext.request.contextPath }/jsp/login.jsp">首页</a> <span>|</span> 
-				<a href="javascript:;">登录</a> <span>|</span> 
-				<a href="javascript:;">注册</a> <span>|</span> 
-				<a href="javascript:;">购物车</a> <span>|</span> 
-				<a href="javascript:;">关于我们</a> <span>|</span> 
-				<a href="javascript:;">个人中心</a>
+				<a href="${ pageContext.request.contextPath }/jsp/index.jsp">首页</a> <span>|</span> 
+				<a href="${ pageContext.request.contextPath }/jsp/login.jsp">登录</a> <span>|</span> 
+				<a href="${ pageContext.request.contextPath }/jsp/registered.jsp">注册</a> <span>|</span> 
+				<a href="${ pageContext.request.contextPath }/jsp/about.jsp">关于我们</a>
+				<c:if test="${ UserInfo != null}">
+				<span>|</span> 
+				<a href="${ pageContext.request.contextPath }/jsp/shopcar.jsp">购物车</a> <span>|</span> 
+				<a href="${ pageContext.request.contextPath }/jsp/personal.jsp">个人中心</a>
+				</c:if>
 			</p>
 			<p class="coty">
 				母婴商城版权所有 &copy; 2012-2019  

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="control.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +13,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 </head>
 <body>
-<%@ include file="../head.jsp" %>
+<%@ include file="head.jsp" %>
   <div class="content content-nav-base commodity-content">
-    <%@ include file="../nav.jsp" %>
+    <%@ include file="nav.jsp" %>
     <div class="commod-cont-wrap">
       <div class="commod-cont w1200 layui-clear">
         <%@ include file="personal_nav.jsp"%>

@@ -61,7 +61,6 @@
 
 
         $(".layui-btn").click(function() {
-        	alert("cuowu");
             if($("#password").val() != $("#password1").val()){
             	layer.msg("两次输入的密码不一样");
                 return false;

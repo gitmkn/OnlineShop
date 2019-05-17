@@ -82,6 +82,7 @@ var car = {
                   that.parentNode.removeChild(that);
                 }
               })
+              
               break;
           }
           getTotal()
@@ -95,7 +96,7 @@ var car = {
               for(var i = 0;i < uls.length;i++){
                 var input = uls[i].getElementsByTagName('input')[0];
                 if(input.checked){
-                  uls[i].parentNode.removeChild(uls[i]); 
+                  uls[i].parentNode.removeChild(uls[i]);
                   i--;
                 }
               }

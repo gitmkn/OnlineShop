@@ -12,6 +12,7 @@
 	href="${ pageContext.request.contextPath }/res/layui/css/layui.css">
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/res/layui/layui.js"></script>
+	<script type="text/javascript" src="${ pageContext.request.contextPath }/res/static/js/jquery.js"></script>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -47,7 +48,7 @@
 										<div class="title">宝宝五彩袜棉质舒服</div>
 										<div class="price">
 											<span>￥49.00</span>
-											<del>￥99.00</del>
+											<del>￥100.00</del>
 										</div>
 									</div>
 									<div class="item">
@@ -124,7 +125,7 @@
 		</div>
 
 
-		<div class="hot-recommend-con">
+		<%-- <div class="hot-recommend-con">
 			<div class="hot-con1 w1200 layui-clear">
 				<div class="item">
 					<h4>热销推荐</h4>
@@ -157,7 +158,7 @@
 						src="${ pageContext.request.contextPath }/res/static/img/hot9.jpg"></a>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 
 
 
@@ -249,116 +250,12 @@
 			<div class="product-list-cont w1200">
 				<h4>更多推荐</h4>
 				<div class="product-item-box layui-clear">
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more1.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
+					<%-- <div class="list-item">
 						<a href="javascript:;"><img
 							src="${ pageContext.request.contextPath }/res/static/img/more2.jpg"></a>
 						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
 						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more3.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more1.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more2.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more3.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more1.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more2.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more3.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more1.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more2.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more3.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more1.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more2.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more3.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more1.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<div class="list-item">
-						<a href="javascript:;"><img
-							src="${ pageContext.request.contextPath }/res/static/img/more2.jpg"></a>
-						<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
-						<span>￥100.00</span>
-					</div>
-					<c:forEach var="goods" items="${ goodsList }"> 
-						<div class="list-item">
-							<a href="${ pageContext.request.contextPath }/goods.gdo?id=${ goods.goods_id }"><img
-								src="${ pageContext.request.contextPath }/res/static/img/more3.jpg">
-							<p>${ goods.goods_name }</p>
-							<span>￥ ${ goods.goods_price }</span></a>
-						</div>
-					</c:forEach>
+					</div> --%>
 				</div>
 			</div>
 		</div>
@@ -366,6 +263,26 @@
 
 	<%@ include file="foot.jsp"%>
 	<script type="text/javascript">
+	
+ 	$(function(){
+		$.ajax({
+			type:"get",
+			url:"${ pageContext.request.contextPath }/goodsIndex.gdo?type=gdtj",
+			dataType:'json',
+			success:function(data){
+				var goods = "";
+				$.each(data,function(index,item){
+					goods += '<div class="list-item">'+
+					'<a href="${ pageContext.request.contextPath }/goods.gdo?id='+item.goods_id+'">'+
+					'<img src="${ pageContext.request.contextPath }/res/static/img/more3.jpg">'+
+					'<p>'+item.goods_name+'</p>'+
+					'<span>￥ '+item.goods_price+'</span></a>'+
+					'</div>';
+				}),
+				$(".product-item-box").append(goods);
+			}
+		});
+	});
 		baseUrl = '${ pageContext.request.contextPath }';
 		layui.config({
 			base : '${ pageContext.request.contextPath }/res/static/js/util/' //你存放新模块的目录，注意，不是layui的模块目录
@@ -398,6 +315,7 @@
 			//  })
 			
 		});
+		
 	</script>
 </body>
 </html>

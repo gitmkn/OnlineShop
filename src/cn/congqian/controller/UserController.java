@@ -134,8 +134,6 @@ public class UserController extends HttpServlet {
 		user.setCreatetime(date);
 		user.setAddress(address);
 		int i = userServer.update(user);
-		System.out.println(user);
-		System.out.println(i);
 		HttpSession session = req.getSession();
 		if(i > 0) {
 			session.setAttribute("UserInfo", user);

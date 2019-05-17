@@ -12,6 +12,7 @@
 	href="${ pageContext.request.contextPath }/res/layui/css/layui.css">
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/res/layui/layui.js"></script>
+	<script type="text/javascript" src="${ pageContext.request.contextPath }/res/static/js/jquery.js"></script>
 </head>
 
 <body>

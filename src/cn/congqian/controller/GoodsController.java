@@ -61,11 +61,28 @@ public class GoodsController extends HttpServlet {
 			List<Goods> list = goodsService.goodsList();
 			System.out.println(list);
 			resp.setCharacterEncoding("utf-8");
+			System.out.println(JSON.toJSONString(list));
 			resp.getWriter().write(JSON.toJSONString(list));
 	}
 	
+	/**
+	 * 根据类型查询商品列表
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void goodsIndex(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String type = req.getParameter("type");
+		System.out.println(type);
+		List<Goods> list = goodsService.goodsList();
+		resp.setCharacterEncoding("utf-8");
+		System.out.println(JSON.toJSONString(list));
+		resp.getWriter().write(JSON.toJSONString(list));
+	}
+	
+	
 	private void goods(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("123");
 		try {
 			Goods goods = goodsService.goodsSelectById(1);
 			req.setAttribute("goods", goods);

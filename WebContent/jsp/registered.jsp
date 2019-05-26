@@ -19,7 +19,7 @@
     <div class="login-bg">
       <div class="login-cont w1200">
         <div class="form-box">
-          <form class="layui-form" method="post" action="">
+          <form class="layui-form" method="post" action="${ pageContext.request.contextPath }/Registered.udo">
             <legend>手机号注册</legend>
             <div class="layui-form-item">
               <div class="layui-inline iphone">

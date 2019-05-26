@@ -246,7 +246,7 @@
 	/// 模拟异步
 	setTimeout(function() {
 		$('.grid').Grid('setData', tbody, head);
-	}, 200)
+	}, 100)
 
 	$('.pagination').pagination(10, {
 		callback : function(page) {

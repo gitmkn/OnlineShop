@@ -33,6 +33,13 @@ public class UserDaoImpl extends BaseDao<User> implements UserDao{
 		return super.update(sql, user.getPassword(),user.getId());
 	}
 
+	@Override
+	public int insert(User user) {
+		// TODO Auto-generated method stub
+		String sql = "insert into t_user(phone,password) value(?,?)";
+		return super.update(sql, user.getPhone(),user.getPassword());
+	}
+
 	
 
 }

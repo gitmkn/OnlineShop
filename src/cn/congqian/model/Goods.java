@@ -31,11 +31,16 @@ public class Goods {
 	/**
 	 * 商品类别
 	 */
-	private GoodsType goods_type;
+	private int goodsType_id;
 	/**
 	 * 商品状态
 	 */
 	private int goods_status;
+	/**
+	 * 商品图片id
+	 */
+	private String goodsPicture_id;
+	
 	public int getGoods_id() {
 		return goods_id;
 	}
@@ -72,11 +77,11 @@ public class Goods {
 	public void setGoods_sum(int goods_sum) {
 		this.goods_sum = goods_sum;
 	}
-	public GoodsType getGoods_type() {
-		return goods_type;
+	public int getGoodsType_id() {
+		return goodsType_id;
 	}
-	public void setGoods_type(GoodsType goods_type) {
-		this.goods_type = goods_type;
+	public void setGoodsType_id(int goodsType_id) {
+		this.goodsType_id = goodsType_id;
 	}
 	public int getGoods_status() {
 		return goods_status;
@@ -84,11 +89,18 @@ public class Goods {
 	public void setGoods_status(int goods_status) {
 		this.goods_status = goods_status;
 	}
+	public String getGoodsPicture_id() {
+		return goodsPicture_id;
+	}
+	public void setGoodsPicture_id(String goodsPicture_id) {
+		this.goodsPicture_id = goodsPicture_id;
+	}
 	@Override
 	public String toString() {
 		return "Goods [goods_id=" + goods_id + ", goods_name=" + goods_name + ", goods_describe=" + goods_describe
 				+ ", goods_price=" + goods_price + ", goods_createtime=" + goods_createtime + ", goods_sum=" + goods_sum
-				+ ", goods_type=" + goods_type + ", goods_status=" + goods_status + "]";
+				+ ", goodsType_id=" + goodsType_id + ", goods_status=" + goods_status + ", goodsPicture_id="
+				+ goodsPicture_id + "]";
 	}
 	
 }

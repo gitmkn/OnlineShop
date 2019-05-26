@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 
 import cn.congqian.model.Goods;
-import cn.congqian.model.GoodsType;
 import cn.congqian.service.FactoryService;
 import cn.congqian.service.GoodsService;
 
@@ -82,9 +81,33 @@ public class GoodsController extends HttpServlet {
 	}
 	
 	
+
+	/**
+	 * 根据类型查询商品列表
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void goodsIndex1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String idtype = req.getParameter("id");
+		System.out.println(idtype);
+		if(idtype == null) idtype="1";
+		int typeid = Integer.parseInt(idtype);
+		List<Goods> list = goodsService.goodsSelectByType(typeid);
+		resp.setCharacterEncoding("utf-8");
+		System.out.println(JSON.toJSONString(list));
+		resp.getWriter().write(JSON.toJSONString(list));
+	}
+	
+	
 	private void goods(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String idtype = req.getParameter("id");
+		System.out.println(idtype);
+		if(idtype == null) idtype="1";
+		int id = Integer.parseInt(idtype);
 		try {
-			Goods goods = goodsService.goodsSelectById(1);
+			Goods goods = goodsService.goodsSelectById(id);
 			req.setAttribute("goods", goods);
 			System.out.println(goods);
 		} catch (Exception e) {
@@ -92,5 +115,28 @@ public class GoodsController extends HttpServlet {
 			System.out.println("查询商品时出错");
 		}
 		req.getRequestDispatcher("/jsp/details.jsp").forward(req, resp);
+	}
+	
+	
+	private void goodsClass(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int type = Integer.parseInt(req.getParameter("type"));
+		String type1 = "";
+		if(type == 5) {
+			type1 = "女孩玩具";
+		}
+		if(type == 6) {
+			type1 = "男孩玩具";
+		}
+		if(type == 7) {
+			type1 = "婴儿玩具";
+		}
+		System.out.println(type);
+		List<Goods> list = goodsService.goodsSelectByType(type);
+		resp.setCharacterEncoding("utf-8");
+		req.setAttribute("goodslist", list);
+		req.setAttribute("type", type1);
+		System.out.println(JSON.toJSONString(list));
+		resp.getWriter().write(JSON.toJSONString(list));
+		req.getRequestDispatcher("/jsp/commodity.jsp").forward(req, resp);
 	}
 }

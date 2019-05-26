@@ -9,18 +9,6 @@
 <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/css/style.css" />
 <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/css/WdatePicker.css" />
 <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/css/skin_/form.css" />
-<link href="${ pageContext.request.contextPath }/admin/umeditor/themes/default/_css/umeditor.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/jquery.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/global.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/jquery.select.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/WdatePicker.js"></script>
-<script type="text/javascript">
-var beanurl = '${ pageContext.request.contextPath }/admin/';
-window.UMEDITOR_HOME_URL = beanurl+'umeditor/';  // 请换成绝对路径
-</script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/umeditor.config.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/editor_api.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/umeditor/lang/zh-cn/zh-cn.js"></script>
 <title>卡通玩具销售系统后台</title>
 </head>
 
@@ -37,17 +25,9 @@ window.UMEDITOR_HOME_URL = beanurl+'umeditor/';  // 请换成绝对路径
             	<div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>入库单ID</label>
                 	<div class="kv-item-content">
-                    	<input type="text" placeholder="入库单ID" />
+                    	<input type="text"  placeholder="入库单ID" />
                     </div>
                     <span class="kv-item-tip">商品名称字数限制在35个字符</span>
-                </div>
-                <div class="kv-item ue-clear time">
-                	<label><span class="impInfo">*</span>入库时间</label>
-                	<div class="kv-item-content">
-                    	<input type="text" value="2019-05-02-13:23:05"/>
-                        <i class="time-icon"></i>
-                    </div>
-                    <!-- <span class="kv-item-tip error">这是一个错误信息</span> -->
                 </div>
                 
                 <div class="kv-item ue-clear">
@@ -78,32 +58,7 @@ window.UMEDITOR_HOME_URL = beanurl+'umeditor/';  // 请换成绝对路径
                     </div>
                     <span class="kv-item-tip">请正确填写商品价格</span>
                 </div>
-                <!-- <div class="kv-item ue-clear">
-                	<label>是否审核</label>
-                	<div class="kv-item-content">
-                    	<span class="choose">
-                            <span class="checkboxouter">
-                                <input type="radio" name="need" />
-                                <span class="radio"></span>
-                            </span>
-                            <span class="text">是</span>
-                        </span>
-                    	<span class="choose">
-                            <span class="checkboxouter">
-                                <input type="radio" name="need" />
-                                <span class="radio"></span>
-                            </span>
-                            <span class="text">否</span>
-                        </span>
-                        
-                    </div>
-                    <span class="kv-item-tip">标题字数限制在35个字符</span>
-                </div> -->
-                
-                
-              
             </div>
-            
             
             <div class="buttons">
                 <input class="button" type="button" value="确认添加" />
@@ -112,10 +67,4 @@ window.UMEDITOR_HOME_URL = beanurl+'umeditor/';  // 请换成绝对路径
     </div>
 </div>
 </body>
-
-<script type="text/javascript">
-	$('select').select();
-	showRemind('input[type=text],textarea','color5');
-	UM.getEditor('content');
-</script>
 </html>

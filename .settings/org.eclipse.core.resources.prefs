@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/admin/goods/goodsAdd.jsp=UTF-8
 encoding//WebContent/admin/login.jsp=UTF-8
+encoding//WebContent/admin/text/index.jsp=UTF-8
+encoding//src/cn/congqian/controller/PaymentController.java=UTF-8
+encoding//src/cn/congqian/utils/QuickMarkUtil.java=UTF-8

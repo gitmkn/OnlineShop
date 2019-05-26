@@ -30,4 +30,11 @@ public interface UserDao {
 	 * @return
 	 */
 	public int updatePassword(User user);
+	
+	/**
+	 * 用户注册
+	 * @param user
+	 * @return
+	 */
+	public int insert(User user);
 }

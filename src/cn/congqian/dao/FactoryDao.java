@@ -34,4 +34,28 @@ public class FactoryDao {//工厂类
 	public static MessageDao getMessageDao() {
 		return new MessageDaoImpl();
 	}
+	
+	/**
+	 * 供货商
+	 * @return
+	 */
+	public static SupplierDao getSupplierDao() {
+		return new SupplierDaoImpl();
+	}
+	
+	/**
+	 * 入库
+	 * @return
+	 */
+	public static GodownDao getGodownDao() {
+		return new GodownDaoImpl();
+	}
+	
+	/**
+	 * 商品类型
+	 * @return
+	 */
+	public static GoodsTypeDao geGoodsTypeDao() {
+		return new GoodsTypeDaoImpl();
+	}
 }

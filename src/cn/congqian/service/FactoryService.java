@@ -25,4 +25,29 @@ public class FactoryService {
 	public static MessageService getMessageService() {
 		return new MessageServiceImpl();
 	}
+	
+	/**
+	 * 供货商
+	 * @return
+	 */
+	public static SupplierService getSupplierService() {
+		return new SupplierServiceImpl();
+	}
+	
+
+	/**
+	 * 入库
+	 * @return
+	 */
+	public static GodownService getGodownService() {
+		return new GodownServiceImpl();
+	}
+	
+	/**
+	 * 商品类型
+	 * @return
+	 */
+	public static GoodsTypeService geGoodsTypeService() {
+		return new GoodsTypeServiceImpl();
+	}
 }

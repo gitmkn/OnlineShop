@@ -20,8 +20,8 @@
 	<div id="hd"></div>
     <div id="bd">
     	<div id="main">
-        	<!-- <div class="search-box ue-clear">
-            	<div class="search-area">
+        	<div class="search-box ue-clear">
+            	<!-- <div class="search-area">
                     <div class="kv-item ue-clear">
                         <label>选择时间：</label>
                         <div class="kv-item-content ue-clear">
@@ -121,7 +121,7 @@
                 
                 <div class="grid"></div>
                 
-                <div class="pagination"></div>
+                <!-- <div class="pagination"></div> -->
             </div>
         </div>
     </div>
@@ -136,6 +136,7 @@
 <script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/WdatePicker.js"></script>
 <script type="text/javascript">
 	$('select').select();
+	
 	var head = [{
 				label: '入库单ID',
 				width: 100,
@@ -145,48 +146,65 @@
 				label:'入库时间',
 				width: 150,
 				sortable: 'default',
-				name:'name'	
+				name:'data'	
 			},{
-				label:'数量',
+				label:'入库员',
 				width:150	
 			},{
-				label: '管理员',
+				label: '商品ID',
 				width: 150	
 			},{
-				label: '商品ID',
-				minWidth: 150	
+				label: '商品个数',
+				width: 150	
 			},{
-				label: '供应商ID',
-				width: 120	
+				label: '供货商ID',
+				minWidth: 150	
 			}];
 			
 	var oper = [{label:'修改',onclick: function(){
-					window.location.href="warehouseUpdate.jsp";	
+					window.location.href="${ pageContext.request.contextPath }/godownById.godo?id=";
 				}}]
 	
- 	var tbody = [
-					["RK201905020001","2019-05-02 12:14:03","99","admin","201905030912","gys20190001",oper], 
-					["RK201905020002","2019-05-02 12:18:13","31","admin","201905030913","gys20190002",oper], 
-					["RK201905020003","2019-05-02 12:20:22","46","admin","201905030914","gys20190003",oper], 
-					["RK201905020004","2019-05-02 12:22:43","88","admin","201905030915","gys20190004",oper], 
-					["RK201905020005","2019-05-02 12:34:35","45","admin","201905030916","gys20190005",oper], 
-					["RK201905020006","2019-05-02 12:38:45","52","admin","201905030917","gys20190006",oper]
-				]
-		/* var data1 = null;
-		var tbody;
-		$.ajax({
-			type:"GET",
-            url:"${ pageContext.request.contextPath }/userList.udo",
-            success:function(data){
-                if(data != null){
-                	console.log(data);
-                	data1 = data;
-                }
-            },
-            error:function(){
-                alert("请求错误");
-            }
-		});	 */
+/*  	var tbody = [
+					["201905030912","音乐安抚毛绒玩具 喜洋洋卡通安抚音乐婴儿睡眠玩具可爱","30.00","99","毛绒玩具","2019-01-18","热卖",oper], 
+					["201905030915","小考拉毛绒玩具玩偶仿真无尾熊树袋熊公仔毛绒布艺玩具生日礼物","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
+					["201905030916","搞怪变身小公仔毛绒玩具蜡笔小新玩偶叮当毛绒布艺类玩具","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
+					["201905030917","垂耳兔公仔邦尼兔毛绒玩具小兔子玩偶兔兔抱枕布娃娃","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
+					["201905030918","趴猴长臂猴子长尾猴小公仔猴毛绒玩具","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
+					["201905030919","背带兔毛绒玩具公仔可爱布娃娃","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
+					["201905030920","思丹乐毛绒安抚玩具婴儿可入口宝宝啃咬玩偶哄睡手偶表演手套娃娃","30.00","99","毛绒玩具","2019-01-18","热卖",oper]
+				] */
+	var tbody = [];
+	var str1;
+	$.ajax({
+		type : "GET",
+		url : "${ pageContext.request.contextPath }/godownList.godo",
+		success : function(data) {
+			if (data != null) {
+				//console.log(data);
+				str1 = JSON.parse(data);
+				/* for(var i=0;i<=str1.length;i++){ */
+				for ( var i in str1) {
+					var arr = []
+					arr[0] = str1[i].godown_id;
+					arr[1] = str1[i].godown_date;
+					arr[4] = str1[i].godown_sum;
+					arr[2] = str1[i].godown_admin;
+					arr[3] = str1[i].goods_id;
+					arr[5] = str1[i].supplier_id;
+					arr[7] = oper;
+
+					tbody[i] = arr;
+					console.log(arr);
+
+				}
+				console.log(tbody);
+			}
+		},
+		error : function() {
+			alert("请求错误");
+		}
+	});
 		
 		$('.grid').Grid({
 			thead: head,
@@ -210,7 +228,7 @@
 	/// 模拟异步
 	setTimeout(function(){
 		$('.grid').Grid('setData',tbody, head);
-	},2000)
+	},200)
 	
 	
 	$('.pagination').pagination(10,{

@@ -3,6 +3,7 @@ package cn.congqian.service;
 import java.util.List;
 
 import cn.congqian.model.Goods;
+import cn.congqian.model.GoodsPicture;
 
 public interface GoodsService {
 
@@ -28,5 +29,11 @@ public interface GoodsService {
 	 * 根据类别查询商品
 	 * @return
 	 */
-	public List<Goods> goodsSelectByType(String type);
+	public List<Goods> goodsSelectByType(int type);
+	
+	/**
+	 * 添加商品
+	 * @return
+	 */
+	public int goodsAdd(Goods goods,GoodsPicture goodsPicture);
 }

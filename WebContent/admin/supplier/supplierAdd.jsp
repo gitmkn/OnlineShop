@@ -9,18 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/css/style.css" />
 <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/css/WdatePicker.css" />
 <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/css/skin_/form.css" />
-<link href="${ pageContext.request.contextPath }/admin/umeditor/themes/default/_css/umeditor.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/jquery.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/global.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/jquery.select.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/WdatePicker.js"></script>
-<script type="text/javascript">
-var beanurl = '${ pageContext.request.contextPath }/admin/';
-window.UMEDITOR_HOME_URL = beanurl+'umeditor/';  // 请换成绝对路径
-</script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/umeditor.config.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/editor_api.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/umeditor/lang/zh-cn/zh-cn.js"></script>
 <title>卡通玩具销售系统后台</title>
 </head>
 
@@ -33,11 +22,19 @@ window.UMEDITOR_HOME_URL = beanurl+'umeditor/';  // 请换成绝对路径
             <h2 class="subfild">
             	<p>供应商基本信息</p>
             </h2>
+            <form medth="post">
             <div class="subfild-content base-info">
+            	<div class="kv-item ue-clear">
+                	<label><span class="impInfo">*</span>供应商编号</label>
+                	<div class="kv-item-content">
+                    	<input type="text" name="id" placeholder="供应商编号" />
+                    </div>
+                    <span class="kv-item-tip">不可修改,不可重复</span>
+                </div>
             	<div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>供应商名称</label>
                 	<div class="kv-item-content">
-                    	<input type="text" placeholder="供应商名称" />
+                    	<input type="text" name="name" placeholder="供应商名称" />
                     </div>
                     <span class="kv-item-tip">名称字数限制在35个字符</span>
                 </div>
@@ -64,28 +61,28 @@ window.UMEDITOR_HOME_URL = beanurl+'umeditor/';  // 请换成绝对路径
                 <div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>联系人</label>
                 	<div class="kv-item-content">
-                    	<input type="text" placeholder="联系人" />
+                    	<input type="text" name="username" placeholder="联系人" />
                     </div>
                     <!-- <span class="kv-item-tip">商品个数为整数</span> -->
                 </div>
                 <div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>供应商地址</label>
                 	<div class="kv-item-content">
-                    	<input type="text" placeholder="供应商地址" />
+                    	<input type="text" name="address" placeholder="供应商地址" />
                     </div>
                     <!-- <span class="kv-item-tip">请正确填写商品价格</span> -->
                 </div>
                 <div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>供应商邮箱</label>
                 	<div class="kv-item-content">
-                    	<input type="text" placeholder="供应商邮箱" />
+                    	<input type="text" name="email" placeholder="供应商邮箱" />
                     </div>
                     <!-- <span class="kv-item-tip">请正确填写商品价格</span> -->
                 </div>
                 <div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>供应商电话</label>
                 	<div class="kv-item-content">
-                    	<input type="text" placeholder="供应商电话" />
+                    	<input type="text" name="phone" placeholder="供应商电话" />
                     </div>
                     <!-- <span class="kv-item-tip">请正确填写商品价格</span> -->
                 </div>
@@ -125,14 +122,25 @@ window.UMEDITOR_HOME_URL = beanurl+'umeditor/';  // 请换成绝对路径
             <div class="buttons">
                 <input class="button" type="button" value="确认添加" />
             </div>
+            </form>
         </div>
     </div>
 </div>
-</body>
-
 <script type="text/javascript">
-	$('select').select();
-	showRemind('input[type=text],textarea','color5');
-	UM.getEditor('content');
+	$(".button").click(function() {
+		$.ajax({
+			type : "post",
+			url : "${ pageContext.request.contextPath }/supplierAdd.sdo",
+			data : $('form').serializeArray(),
+			success : function(data) {
+				if (data == '1') {
+					alert("添加成功");
+				} else {
+					alert("添加失败");
+				}
+			}
+		});
+	});
 </script>
+</body>
 </html>

@@ -138,9 +138,11 @@
 				$el.addClass('ui-table-fixed-checkbox');
 				var $tableFront = $('<div class="__theadFront table-front-fixed"></div>');
 				if(options.headCount == 1){
-					var $table = $('<table><thead><tr><th class="ui-table-checkbox"><div class="ui-table-thTitle"><input type="checkbox"></div></th></tr></thead></table>');
+					/*var $table = $('<table><thead><tr><th class="ui-table-checkbox"><div class="ui-table-thTitle"><input type="checkbox"></div></th></tr></thead></table>');*/
+					var $table = $('<table><thead><tr><th class="ui-table-checkbox"></th></tr></thead></table>');
 				}else{
-					var $table = $('<table><thead><tr><th class="ui-table-checkbox" rowspan="2"><div class="ui-table-thTitle"><input type="checkbox"></div></th></tr></thead></table>');
+					/*var $table = $('<table><thead><tr><th class="ui-table-checkbox" rowspan="2"><div class="ui-table-thTitle"><input type="checkbox"></div></th></tr></thead></table>');*/
+					var $table = $('<table><thead><tr><th class="ui-table-checkbox" rowspan="2"></th></tr></thead></table>');
 				}
 				if(options.checkbox.disable){
 					$table.find('input[type=checkbox]').attr('disabled','disabled');
@@ -849,9 +851,11 @@
 			var trArray = [];
 			for(var i = 0, len = tableBody.length;i < len;i++){
 				if(isDisable){
-					trArray.push('<tr attr="38"><td class="ui-table-checkbox"><input type="checkbox" disabled="disabled"></td></tr>');
+					/*trArray.push('<tr attr="38"><td class="ui-table-checkbox"><input type="checkbox" disabled="disabled"></td></tr>');*/
+					trArray.push('<tr attr="38"></tr>');
 				}else{
-					trArray.push('<tr attr="38"><td class="ui-table-checkbox"><input type="checkbox"></td></tr>');
+					/*trArray.push('<tr attr="38"><td class="ui-table-checkbox"><input type="checkbox"></td></tr>');*/
+					trArray.push('<tr attr="38"></tr>');
 				}
 			}
 			$tbody.append(trArray.join(''));

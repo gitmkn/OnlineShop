@@ -17,10 +17,10 @@
     <%@ include file="nav.jsp" %>
     <div class="data-cont-wrap w1200">
       <div class="crumb">
-        <a href="javascript:;">首页</a>
+        <!-- <a href="javascript:;">首页</a>
         <span>></span>
         <a href="javascript:;">所有商品</a>
-        <span>></span>
+        <span>></span> -->
         <a href="javascript:;">产品详情</a>
       </div>
       <div class="product-intro layui-clear">

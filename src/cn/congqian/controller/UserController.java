@@ -99,6 +99,36 @@ public class UserController extends HttpServlet {
 			}
 		}
 	}
+	
+	
+	/**
+	 * 用户注册
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void Registered(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		User user = new User();
+		String phone = req.getParameter("phone");
+		String pwd = req.getParameter("password");
+		if (phone != null || pwd != null) {
+			String password1 = new Md5Util().getMd5(pwd);
+			user.setPhone(phone);
+			user.setPassword(password1);
+			int i = userServer.insert(user);
+			System.out.println(user);
+			if (i > 0) {
+				resp.sendRedirect(req.getContextPath() + "/jsp/login.jsp");
+			} else {
+				System.out.println("登录失败，账号或者密码错误");
+				resp.sendRedirect(req.getContextPath() + "/jsp/login.jsp");
+			}
+		}
+	}
+	
+	
 	/**
 	 * 用户修改密码
 	 * 
@@ -133,6 +163,7 @@ public class UserController extends HttpServlet {
 		java.sql.Date date = new java.sql.Date(birth.getTime()); 
 		user.setCreatetime(date);
 		user.setAddress(address);
+		System.out.println(user);
 		int i = userServer.update(user);
 		HttpSession session = req.getSession();
 		if(i > 0) {

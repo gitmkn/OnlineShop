@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/css/jquery.grid.css" />
 
 
-<title>用户列表</title>
+<title>供应商列表</title>
 </head>
 
 <body>
@@ -20,8 +20,8 @@
 	<div id="hd"></div>
     <div id="bd">
     	<div id="main">
-        	<div class="search-box ue-clear">
-            	<!-- <div class="search-area">
+        	<!-- <div class="search-box ue-clear">
+            	<div class="search-area">
                     <div class="kv-item ue-clear">
                         <label>选择时间：</label>
                         <div class="kv-item-content ue-clear">
@@ -137,81 +137,77 @@
 <script type="text/javascript">
 	$('select').select();
 	var head = [{
-				label: '商品ID',
+				label: '供应商ID',
 				width: 100,
 				sortable: 'default',
 				name: 'id'	
 			},{
-				label:'商品名',
+				label:'供应商名称',
 				width: 150,
 				sortable: 'default',
 				name:'name'	
 			},{
-				label:'价格',
+				label:'联系人',
 				width:150	
 			},{
-				label: '个数',
+				label: '地址',
 				width: 150	
 			},{
-				label: '商品类别',
+				label: '邮箱',
 				minWidth: 150	
 			},{
-				label: '添加时间',
+				label: '联系电话',
 				width: 120	
-			},{
-				label: '商品状态',
-				width:100	
 			}];
 			
-	var oper = [{label:'下架',onclick:function(){
-						alert('下架');
-				}},{label:'修改',onclick: function(){
-					window.location.href="goodsUpdate.jsp";	
-				}},{label:'入库',onclick: function(){
-					window.location.href="../warehouse/warehouseAdd.jsp";
+	var oper = [{label:'修改',onclick: function(){
+					/* window.location.href="supplierUpdate.jsp";	 */
+					/* alert(str1[i].supplier_id); */
+					/* $.ajax({
+						type:'get',
+						url:'${ pageContext.request.contextPath }/supplier.sdo'
+					}); */
 				}}]
 	
-/*  	var tbody = [
-					["201905030912","音乐安抚毛绒玩具 喜洋洋卡通安抚音乐婴儿睡眠玩具可爱","30.00","99","毛绒玩具","2019-01-18","热卖",oper], 
-					["201905030915","小考拉毛绒玩具玩偶仿真无尾熊树袋熊公仔毛绒布艺玩具生日礼物","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
-					["201905030916","搞怪变身小公仔毛绒玩具蜡笔小新玩偶叮当毛绒布艺类玩具","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
-					["201905030917","垂耳兔公仔邦尼兔毛绒玩具小兔子玩偶兔兔抱枕布娃娃","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
-					["201905030918","趴猴长臂猴子长尾猴小公仔猴毛绒玩具","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
-					["201905030919","背带兔毛绒玩具公仔可爱布娃娃","30.00","99","毛绒玩具","2019-01-18","热卖",oper],
-					["201905030920","思丹乐毛绒安抚玩具婴儿可入口宝宝啃咬玩偶哄睡手偶表演手套娃娃","30.00","99","毛绒玩具","2019-01-18","热卖",oper]
+ 	/* var tbody = [
+					["gys20190001","毛绒玩具厂1","张三","辽宁省丹东市元宝区","ldxymrwj@163.com","13473241100",oper], 
+					["gys20190002","毛绒玩具厂2","李四","辽宁省沈阳市","sysmrwj@163.com","13473245273",oper], 
+					["gys20190003","毛绒玩具厂3","哈哈","辽宁省铁岭市","tlsmrwj@163.com","13473243366",oper], 
+					["gys20190004","毛绒玩具厂4","测试","辽宁省本溪市","bxsmrwj@163.com","13473248546",oper], 
+					["gys20190005","毛绒玩具厂5","赵六","辽宁省朝阳市","cysmrwj@163.com","13473246321",oper], 
+					["gys20190006","毛绒玩具厂6","测试1111","辽宁省大连市","dlsmrwj@163.com","13473245791",oper], 
+					["gys20190007","毛绒玩具厂7","测试2222","辽宁省营口市","yksmrwj@163.com","13473241346",oper], 
 				] */
-	var tbody = [];
-	var str1;
-	$.ajax({
-		type : "GET",
-		url : "${ pageContext.request.contextPath }/goodsList.gado",
-		success : function(data) {
-			if (data != null) {
-				//console.log(data);
-				str1 = JSON.parse(data);
-				/* for(var i=0;i<=str1.length;i++){ */
-				for ( var i in str1) {
-					var arr = []
-					arr[0] = str1[i].goods_id;
-					arr[1] = str1[i].goods_name;
-					arr[2] = str1[i].goods_price;
-					arr[3] = str1[i].goods_sum;
-					arr[4] = str1[i].goods_type;
-					arr[5] = str1[i].goods_createtime;
-					arr[6] = str1[i].goods_status;
-					arr[7] = oper;
+				var tbody = [];
+				var str1;
+				$.ajax({
+					type : "GET",
+					url : "${ pageContext.request.contextPath }/supplierList.sdo",
+					success : function(data) {
+						if (data != null) {
+							//console.log(data);
+							str1 = JSON.parse(data);
+							for ( var i in str1) {
+								var arr = []
+								arr[0] = str1[i].supplier_id;
+								arr[1] = str1[i].supplier_name;
+								arr[2] = str1[i].supplier_username;
+								arr[3] = str1[i].supplier_address;
+								arr[4] = str1[i].supplier_email;
+								arr[5] = str1[i].supplier_phone;
+								arr[7] = oper;
 
-					tbody[i] = arr;
-					console.log(arr);
+								tbody[i] = arr;
+								//console.log(arr);
 
-				}
-				console.log(tbody);
-			}
-		},
-		error : function() {
-			alert("请求错误");
-		}
-	});
+							}
+							//console.log(tbody);
+						}
+					},
+            error:function(){
+                alert("请求错误");
+            }
+		});
 		
 		$('.grid').Grid({
 			thead: head,
@@ -235,7 +231,7 @@
 	/// 模拟异步
 	setTimeout(function(){
 		$('.grid').Grid('setData',tbody, head);
-	},2000)
+	},20)
 	
 	
 	$('.pagination').pagination(10,{

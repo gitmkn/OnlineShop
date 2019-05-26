@@ -6,13 +6,13 @@
 <head>
 <meta charset="utf-8" />
 <title>卡通玩具销售系统</title>
-<link rel="stylesheet" type="text/css"
+<%-- <link rel="stylesheet" type="text/css"
 	href="${ pageContext.request.contextPath }/res/static/css/main.css">
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.request.contextPath }/res/layui/css/layui.css">
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/res/layui/layui.js"></script>
-	<script type="text/javascript" src="${ pageContext.request.contextPath }/res/static/js/jquery.js"></script>
+	<script type="text/javascript" src="${ pageContext.request.contextPath }/res/static/js/jquery.js"></script> --%>
 </head>
 
 <body>
@@ -32,9 +32,16 @@
 					</div>
 				</c:if>
 				<c:if test="${ UserInfo != null}">
+					<c:if test="${ UserInfo.username != null}">
 					<div class="login">
 						<a href="${ pageContext.request.contextPath }/jsp/index.jsp">${ UserInfo.username }</a>
 					</div>
+					</c:if>
+					<c:if test="${ UserInfo.username == null}">
+					<div class="login">
+						<a href="${ pageContext.request.contextPath }/jsp/myMessage.jsp">请完善您的信息</a>
+					</div>
+					</c:if>
 					<div class="login">
 						<a href="${ pageContext.request.contextPath }/exit.udo">退出</a>
 					</div>

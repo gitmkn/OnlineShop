@@ -4,7 +4,7 @@ public class GoodsPicture {
 	/**
 	 * 图片地址id
 	 */
-	private int picture_id;
+	private String picture_id;
 	/**
 	 * 图片地址
 	 */
@@ -13,10 +13,10 @@ public class GoodsPicture {
 	 * 商品id
 	 */
 	private Goods goods_id;
-	public int getPicture_id() {
+	public String getPicture_id() {
 		return picture_id;
 	}
-	public void setPicture_id(int picture_id) {
+	public void setPicture_id(String picture_id) {
 		this.picture_id = picture_id;
 	}
 	public String getPicture_url() {

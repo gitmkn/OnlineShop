@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>卡通玩具销售系统</title>
-  <link rel="stylesheet" type="text/css" href="../res/static/css/main.css">
-  <link rel="stylesheet" type="text/css" href="../res/layui/css/layui.css">
-  <script type="text/javascript" src="../res/layui/layui.js"></script>
+  <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/res/static/css/main2.css">
+  <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/res/layui/css/layui.css">
+  <script type="text/javascript" src="${ pageContext.request.contextPath }/res/layui/layui.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 </head>
@@ -17,8 +19,8 @@
     <%@ include file="nav.jsp" %>
     <div class="commod-cont-wrap">
       <div class="commod-cont w1200 layui-clear">
-        <div class="left-nav">
-          <div class="title">所有分类</div>
+        <!-- <div class="left-nav"> -->
+          <!-- <div class="title">所有分类</div>
           <div class="list-box">
             <dl>
              <dt>户外玩具</dt>
@@ -53,16 +55,30 @@
              <dd><a href="javascript:;">孕妇用品</a></dd>
             </dl>
           </div>
-        </div>
+        </div> -->
         <div class="right-cont-wrap">
           <div class="right-cont">
             <div class="prod-number">
-              <h3>儿童玩具</h3>
+              <h3>${ type }</h3>
             </div>
             <div class="cont-list layui-clear" id="list-cont">
+            <c:forEach var="goods" items="${ goodslist }">
+            <div class="item">
+                <div class="img">
+                  <a href="${ pageContext.request.contextPath }/goods.gdo?id=${ goods.goods_id }"><img src="${ pageContext.request.contextPath }/res/static/img/paging_img1.jpg"></a>
+                </div>
+                <div class="text">
+                  <p class="title">${fn:substring(goods.goods_name, 0, 16)}</p>
+                  <p class="price">
+                    <span class="pri">￥ ${ goods.goods_price}</span>
+                    <span class="nub">1266付款</span>
+                  </p>
+                </div>
+              </div>
+            </c:forEach>
               <div class="item">
                 <div class="img">
-                  <a href="javascript:;"><img src="../res/static/img/paging_img1.jpg"></a>
+                  <a href="javascript:;"><img src="${ pageContext.request.contextPath }/res/static/img/paging_img1.jpg"></a>
                 </div>
                 <div class="text">
                   <p class="title">森系小清新四件套</p>
@@ -72,43 +88,7 @@
                   </p>
                 </div>
               </div>
-              <div class="item">
-                <div class="img">
-                  <a href="javascript:;"><img src="../res/static/img/paging_img2.jpg"></a>
-                </div>
-                <div class="text">
-                  <p class="title">森系小清新四件套</p>
-                  <p class="price">
-                    <span class="pri">￥200</span>
-                    <span class="nub">1266付款</span>
-                  </p>
-                </div>
-              </div>
-              <div class="item">
-                <div class="img">
-                  <a href="javascript:;"><img src="../res/static/img/paging_img3.jpg"></a>
-                </div>
-                <div class="text">
-                  <p class="title">森系小清新四件套</p>
-                  <p class="price">
-                    <span class="pri">￥200</span>
-                    <span class="nub">1266付款</span>
-                  </p>
-                </div>
-              </div>
-              <div class="item">
-                <div class="img">
-                  <a href="javascript:;"><img src="../res/static/img/paging_img1.jpg"></a>
-                </div>
-                <div class="text">
-                  <p class="title">森系小清新四件套</p>
-                  <p class="price">
-                    <span class="pri">￥200</span>
-                    <span class="nub">1266付款</span>
-                  </p>
-                </div>
-              </div>
-              <div class="item">
+              <!-- <div class="item">
                 <div class="img">
                   <a href="javascript:;"><img src="../res/static/img/paging_img2.jpg"></a>
                 </div>
@@ -240,16 +220,67 @@
                   </p>
                 </div>
               </div>
-            </div>
+              <div class="item">
+                <div class="img">
+                  <a href="javascript:;"><img src="../res/static/img/paging_img1.jpg"></a>
+                </div>
+                <div class="text">
+                  <p class="title">森系小清新四件套</p>
+                  <p class="price">
+                    <span class="pri">￥200</span>
+                    <span class="nub">1266付款</span>
+                  </p>
+                </div>
+              </div>
+              <div class="item">
+                <div class="img">
+                  <a href="javascript:;"><img src="../res/static/img/paging_img2.jpg"></a>
+                </div>
+                <div class="text">
+                  <p class="title">森系小清新四件套</p>
+                  <p class="price">
+                    <span class="pri">￥200</span>
+                    <span class="nub">1266付款</span>
+                  </p>
+                </div>
+              </div>
+              <div class="item">
+                <div class="img">
+                  <a href="javascript:;"><img src="../res/static/img/paging_img3.jpg"></a>
+                </div>
+                <div class="text">
+                  <p class="title">森系小清新四件套</p>
+                  <p class="price">
+                    <span class="pri">￥200</span>
+                    <span class="nub">1266付款</span>
+                  </p>
+                </div>
+              </div> -->
+            <!-- </div> -->
             
-            <div id="demo0" style="text-align: center;"></div>
+            <!-- <div id="demo0" style="text-align: center;"></div> -->
           </div>
         </div>
       </div>
     </div>
   </div>
 <script>
-
+	/* $(function(){
+		$.ajax({
+			type:"get",
+			url:"${ pageContext.request.contextPath }/goodsIndex.gdo?type=nhwj",
+			dataType:'json',
+			success:function(data){
+				var div = "";
+				$.each(data,function(index,item){
+					if(index <= 4){
+						div += '<a href="javascript:;" class="top-img">'+'<img src="${ pageContext.request.contextPath }/res/static/img/s_img7.jpg" alt=""></a>';
+					}
+				})
+				$("#2f").append(div);
+			}
+		});
+	}); */
   layui.config({
     base: '../res/static/js/util/' //你存放新模块的目录，注意，不是layui的模块目录
   }).use(['mm','laypage','jquery'],function(){
@@ -259,22 +290,7 @@
         elem: 'demo0'
         ,count: 100 //数据总数
       });
-
-
-    // 模版引擎导入
-    //  var html = demo.innerHTML;
-    //  var listCont = document.getElementById('list-cont');
-    //  // console.log(layui.router("#/about.html"))
-    // mm.request({
-    //     url: '../json/commodity.json',
-    //     success : function(res){
-    //       console.log(res)
-    //       listCont.innerHTML = mm.renderHtml(html,res)
-    //     },
-    //     error: function(res){
-    //       console.log(res);
-    //     }
-    //   })
+   
 
     $('.sort a').on('click',function(){
       $(this).addClass('active').siblings().removeClass('active');

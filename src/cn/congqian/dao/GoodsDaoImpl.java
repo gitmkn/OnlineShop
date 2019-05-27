@@ -8,18 +8,20 @@ import cn.congqian.model.GoodsPicture;
 public class GoodsDaoImpl extends BaseDao<Goods> implements GoodsDao{
 
 	@Override
-	public List<Goods> goodsList() {
+	public List<Goods> goodsList(int goods_status) {
 		// TODO Auto-generated method stub
-		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_name "
-				+ "from t_goods,t_goods_type "
-				+ "where t_goods.goods_type = t_goods_type.type_id";
-		return super.getList(sql);
+		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_type,goods_status,t_goods_type.type_id,t_goods_type.type_name,t_goods_picture.picture_id,t_goods_picture.picture_url "
+				+ "from t_goods,t_goods_type,t_goods_picture "
+				+ "where t_goods.goods_type = t_goods_type.type_id "
+				+ "and t_goods.picture_id = t_goods_picture.picture_id "
+				+ "and goods_status=?";
+		return super.getList(sql,goods_status);
 	}
 
 	@Override
 	public Goods goodsSelectById(int id) {
 		// TODO Auto-generated method stub
-		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_name,picture_id "
+		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_id,t_goods_type.type_name,picture_id "
 				+ "from t_goods,t_goods_type "
 				+ "where t_goods.goods_type = t_goods_type.type_id "
 				+ "and goods_id=?";
@@ -49,7 +51,7 @@ public class GoodsDaoImpl extends BaseDao<Goods> implements GoodsDao{
 	public int goodsAdd(Goods goods) {
 		// TODO Auto-generated method stub
 		String sql = "insert into t_goods(goods_name,goods_describe,goods_price,goods_createtime,goods_type,picture_id) value(?,?,?,?,?,?)";
-		return super.update(sql, goods.getGoods_name(),goods.getGoods_describe(),goods.getGoods_price(),goods.getGoods_createtime(),goods.getGoodsType_id(),goods.getGoodsPicture_id());
+		return super.update(sql, goods.getGoods_name(),goods.getGoods_describe(),goods.getGoods_price(),goods.getGoods_createtime(),goods.getType_id(),goods.getPicture_id());
 	}
 	
 	@Override
@@ -59,4 +61,31 @@ public class GoodsDaoImpl extends BaseDao<Goods> implements GoodsDao{
 		return super.update(sql, goodsPicture.getPicture_id(),goodsPicture.getPicture_url());
 	}
 
+	@Override
+	public int goodsUpdate(Goods goods) {
+		// TODO Auto-generated method stub
+		String sql = "update t_goods set goods_name=?,goods_describe=?,goods_price=?,goods_createtime=?,goods_sum=?,goods_type=?,goods_status=?,picture_id=? where goods_id=?";
+		return super.update(sql, goods.getGoods_name(),goods.getGoods_describe(),goods.getGoods_price(),goods.getGoods_createtime(),goods.getGoods_sum(),goods.getType_id(),goods.getGoods_status(),goods.getPicture_id(),goods.getGoods_id());
+	}
+	
+	@Override
+	public int goodsPictureDelete(GoodsPicture goodsPicture) {
+		// TODO Auto-generated method stub
+		String sql = "delete from t_goods_picture where picture_id=?";
+		return super.update(sql, goodsPicture.getPicture_id());
+	}
+
+	@Override
+	public int updateStatus(Goods goods) {
+		// TODO Auto-generated method stub
+		String sql = "update t_goods set goods_status=? where goods_id=?";
+		return super.update(sql, goods.getGoods_status(),goods.getGoods_id());
+	}
+
+	@Override
+	public int updateSum(Goods goods) {
+		// TODO Auto-generated method stub
+		String sql = "update t_goods set goods_sum=? where goods_id=?";
+		return super.update(sql, goods.getGoods_sum(),goods.getGoods_id());
+	}
 }

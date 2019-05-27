@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/css/jquery.grid.css" />
 
 
-<title>用户列表</title>
+<title>入库列表</title>
 </head>
 
 <body>

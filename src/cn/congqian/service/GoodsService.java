@@ -11,7 +11,7 @@ public interface GoodsService {
 	 * 查询商品列表
 	 * @return
 	 */
-	public List<Goods> goodsList();
+	public List<Goods> goodsList(int goods_status);
 	
 	/**
 	 * 根据id查询商品
@@ -36,4 +36,20 @@ public interface GoodsService {
 	 * @return
 	 */
 	public int goodsAdd(Goods goods,GoodsPicture goodsPicture);
+	/**
+	 * 修改商品
+	 * @return
+	 */
+	public int goodsUpdate(Goods goods, GoodsPicture goodsPicture);
+	
+	/**
+	 * 修改商品状态
+	 * @return
+	 */
+	public int updateStatus(Goods goods);
+	/**
+	 * 入库数量
+	 * @return
+	 */
+	public int updateSum(Goods goods);
 }

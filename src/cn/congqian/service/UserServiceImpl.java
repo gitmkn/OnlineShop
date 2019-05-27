@@ -11,7 +11,7 @@ public class UserServiceImpl implements UserService {
 	UserDao userDao = FactoryDao.getUserDao();
 
 	@Override
-	public List<User> userList() {
+	public List<User> userList(int status) {
 		// TODO Auto-generated method stub
 		/*List<User> list = userDao.userList();
 		String str = "";
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 		}
 		str += "]";
 		System.out.println(str);*/
-		return userDao.userList();
+		return userDao.userList(status);
 	}
 
 	@Override
@@ -51,6 +51,12 @@ public class UserServiceImpl implements UserService {
 	public int insert(User user) {
 		// TODO Auto-generated method stub
 		return userDao.insert(user);
+	}
+
+	@Override
+	public int updateStatus(User user) {
+		// TODO Auto-generated method stub
+		return userDao.updateStatus(user);
 	}
 	
 }

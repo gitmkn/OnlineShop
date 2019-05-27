@@ -10,7 +10,7 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	public List<User> userList();
+	public List<User> userList(int status);
 	
 	/**
 	 * 用户登录
@@ -39,4 +39,10 @@ public interface UserService {
 	 * @return
 	 */
 	public int insert(User user);
+	/**
+	 * 修改状态
+	 * @param user
+	 * @return
+	 */
+	public int updateStatus(User user);
 }

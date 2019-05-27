@@ -11,7 +11,7 @@ public interface UserDao {
 	 * @param user
 	 * @return
 	 */
-	public List<User> userList();
+	public List<User> userList(int status);
 	/**
 	 * 用户登录
 	 * @param user
@@ -37,4 +37,11 @@ public interface UserDao {
 	 * @return
 	 */
 	public int insert(User user);
+
+	/**
+	 * 状态修改
+	 * @param user
+	 * @return
+	 */
+	public int updateStatus(User user);
 }

@@ -63,7 +63,8 @@ public class UserController extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void userList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<User> list = userServer.userList();
+		int status = Integer.parseInt(req.getParameter("status"));
+		List<User> list = userServer.userList(status);
 		System.out.println(list); 
 //		System.out.println(json);
 		resp.setCharacterEncoding("utf-8");
@@ -198,6 +199,37 @@ public class UserController extends HttpServlet {
 			resp.getWriter().write("修改失败");
 		}
 	}
+	
+	/**
+	 * 用户修改状态
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		User user = new User();
+		int id = Integer.parseInt(req.getParameter("id"));
+		int status = Integer.parseInt(req.getParameter("status"));
+		user.setId(id);
+		user.setStatus(status);
+		int i = userServer.updateStatus(user);
+		System.out.println(i);
+		if(i > 0) {
+			resp.getWriter().write("修改成功");
+		}else {
+			resp.getWriter().write("修改失败");
+		}
+	}
+	
+	/**
+	 * 用户退出
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	private void exit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		session.invalidate();

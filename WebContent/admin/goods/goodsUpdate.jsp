@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../control.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
@@ -9,26 +9,28 @@
 <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/css/style.css" />
 <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/css/WdatePicker.css" />
 <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/css/skin_/form.css" />
-<link href="${ pageContext.request.contextPath }/admin/umeditor/themes/default/_css/umeditor.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/jquery.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/global.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/jquery.select.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/WdatePicker.js"></script>
-<script type="text/javascript">
-var beanurl = '${ pageContext.request.contextPath }/admin/';
-window.UMEDITOR_HOME_URL = beanurl+'umeditor/';  // 请换成绝对路径
-</script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/umeditor.config.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/js/editor_api.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/admin/umeditor/lang/zh-cn/zh-cn.js"></script>
+<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/admin/goods/dist/bootstrap-3.3.4.css">
+<link href="${ pageContext.request.contextPath }/admin/goods/dist/summernote.css" rel="stylesheet"/>
+<script src="${ pageContext.request.contextPath }/admin/goods/dist/jquery-1.10.2.js"></script>
+<script src="${ pageContext.request.contextPath }/admin/goods/dist/bootstrap-3.3.4.js"></script>
+<script src="${ pageContext.request.contextPath }/admin/goods/dist/summernote.js"></script>
+<script src="${ pageContext.request.contextPath }/admin/goods/dist/lang/summernote-zh-CN.js"></script>    <!-- 中文-->
+
+<style>
+	.m{ width: 800px; margin-left: auto; margin-right: auto; }
+</style>
+
 <title>卡通玩具销售系统后台</title>
 </head>
-
+ <%  
+String getId = request.getParameter("getId");
+%> 
 <body>
 <div id="container">
 	<div id="hd">
     </div>
     <div id="bd">
+    <form id="fm" method="post" action="${ pageContext.request.contextPath }/goodsUpdate.gado" enctype="multipart/form-data">
     	<div id="main">
             <h2 class="subfild">
             	<span>基本信息</span>
@@ -37,7 +39,7 @@ window.UMEDITOR_HOME_URL = beanurl+'umeditor/';  // 请换成绝对路径
             	<div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>商品名称</label>
                 	<div class="kv-item-content">
-                    	<input type="text" placeholder="音乐安抚毛绒玩具 喜洋洋卡通安抚音乐婴儿睡眠玩具可爱" value="音乐安抚毛绒玩具 喜洋洋卡通安抚音乐婴儿睡眠玩具可爱" />
+                    	<input type="text" name="goods_name" placeholder="商品名称" />
                     </div>
                     <span class="kv-item-tip">商品名称字数限制在35个字符</span>
                 </div>
@@ -53,58 +55,46 @@ window.UMEDITOR_HOME_URL = beanurl+'umeditor/';  // 请换成绝对路径
                 <div class="kv-item ue-clear">
                 	<label>商品分类</label>
                 	<div class="kv-item-content">
-                    	<select>
-                    		<option>毛绒玩具</option>
-                        	<option>女孩玩具</option>
-                            <option>男孩玩具</option>
-                            <option>婴儿玩具</option>
+                    	<select name="goods_type">
+                        	<!-- <option value="1">女孩玩具</option>
+                            <option value="2">男孩玩具</option>
+                            <option value="3">婴儿玩具</option> -->
                         </select>
+                        <span id="goodstype"></span>
                     </div>
                     <!-- <span class="kv-item-tip success">成功信息</span> -->
                 </div>
-                <div class="kv-item ue-clear">
+                <!-- <div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>商品个数</label>
                 	<div class="kv-item-content">
-                    	<input type="text" placeholder="99" />
+                    	<input type="text" placeholder="商品个数" />
                     </div>
                     <span class="kv-item-tip">商品个数为整数</span>
-                </div>
+                </div> -->
                 <div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>商品价格</label>
                 	<div class="kv-item-content">
-                    	<input type="text" placeholder="30.00" />
+                    	<input type="text" name="goods_price" placeholder="商品价格" />
                     </div>
                     <span class="kv-item-tip">请正确填写商品价格</span>
                 </div>
-                <!-- <div class="kv-item ue-clear">
-                	<label>是否审核</label>
-                	<div class="kv-item-content">
-                    	<span class="choose">
-                            <span class="checkboxouter">
-                                <input type="radio" name="need" />
-                                <span class="radio"></span>
-                            </span>
-                            <span class="text">是</span>
-                        </span>
-                    	<span class="choose">
-                            <span class="checkboxouter">
-                                <input type="radio" name="need" />
-                                <span class="radio"></span>
-                            </span>
-                            <span class="text">否</span>
-                        </span>
-                        
-                    </div>
-                    <span class="kv-item-tip">标题字数限制在35个字符</span>
-                </div> -->
                 
                 
                 <div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>商品图</label>
-                	<div class="kv-item-content file">
+                	<div class="kv-item-content">
 						<span class="text"></span>
-                        <input type="file" />
-                        <input type="button" class="button normal long2" value="浏览.." />
+						<img src="" width="10" height="10">
+                        <!-- <input type="file" name="uploadFile"/> -->
+                        <!-- <input type="button" class="button normal long2" value="浏览.." /> -->
+                        <input type="file" name="uploadFile">
+                    </div>
+                    <!-- <span class="kv-item-tip">标题字数限制在35个字符</span> -->
+                </div>
+                <div class="kv-item ue-clear">
+                	<div class="kv-item-content">
+						<span class="text"></span>
+						<img src="" width="10" height="10">
                     </div>
                     <!-- <span class="kv-item-tip">标题字数限制在35个字符</span> -->
                 </div>
@@ -118,22 +108,82 @@ window.UMEDITOR_HOME_URL = beanurl+'umeditor/';  // 请换成绝对路径
             	<div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>商品内容</label>
                 	<div class="kv-item-content">
-                    	<textarea value="卡通安抚音乐婴儿睡眠玩具可爱" id="content" style="width:800px;height:240px;"></textarea>
+                    	<div class="m">		
+							<div class="summernote"></div>
+							<input type="hidden" id="summernote" name="goods_describe"/>
+						</div>
                     </div>
                 </div>
             </div>
-            
             <div class="buttons">
-                <input class="button" type="button" value="确认修改" />
+                <input type="button" class="button" value="确认添加" />
+                <span>${ addgoods }</span>
             </div>
         </div>
+        </form>
     </div>
 </div>
 </body>
-
-<script type="text/javascript">
-	$('select').select();
-	showRemind('input[type=text],textarea','color5');
-	UM.getEditor('content');
+<script>
+$(function(){
+	 $('.summernote').summernote({
+	        height: 200,
+	        tabsize: 2,
+	        lang: 'zh-CN',
+	        callbacks:{
+	            onImageUpload: function (files) {
+	                //上传图片到服务器
+	                var formData = new FormData();
+	                formData.append('file',files[0]);
+	                $.ajax({
+	                    url : '${pageContext.request.contextPath}/ImggoodsAdd.gado',//后台文件上传接口
+	                    type : 'POST',
+	                    data : formData,
+	                    processData : false,
+	                    contentType : false,
+	                    success : function(path) {
+	                    	alert(path);
+	                        $('.summernote').summernote('insertImage',path);
+	                    },error:function(){
+	                        alert("上传失败");
+	                    }
+	                });
+	            }
+	        }
+	    });
+	});
+	
+	//请求商品类型
+	$.ajax({
+		type : "GET",
+		url : "${ pageContext.request.contextPath }/goodstype.gado",
+		dataType:"json",
+		success : function(data) {
+			for(var i=0;i<data.length;i++){
+				$("select[name='goods_type']").append('<option value="'+data[i].type_id+'">'+data[i].type_name+'</option>');
+			}
+		}
+	});
+	
+	//请求商品详细信息
+	var getId = '<%=getId %>';
+	$.ajax({
+		type : "GET",
+		url : "${ pageContext.request.contextPath }/goods.gado?goodsId="+getId,
+		dataType:"json",
+		success : function(data) {
+			$('input[name=goods_name]').val(data.goods_name);
+			$('body option[value='+data.type_id+']').attr("selected","selected");
+			$('input[name=goods_price]').val(data.goods_price);
+			$('input[name=uploadFile]').val(data.picture_url);
+			$('.summernote').summernote('code',data.goods_describe);
+		}
+	});
+	$(".button").click(function(){
+		var code1 = $('.summernote').summernote('code');
+		$("#summernote").val(code1);
+		$("#fm").submit();
+		alert(code1);
+	});
 </script>
 </html>

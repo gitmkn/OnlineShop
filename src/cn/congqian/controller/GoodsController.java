@@ -57,7 +57,7 @@ public class GoodsController extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void goodsList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			List<Goods> list = goodsService.goodsList();
+			List<Goods> list = goodsService.goodsList(1);
 			System.out.println(list);
 			resp.setCharacterEncoding("utf-8");
 			System.out.println(JSON.toJSONString(list));
@@ -74,7 +74,7 @@ public class GoodsController extends HttpServlet {
 	private void goodsIndex(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String type = req.getParameter("type");
 		System.out.println(type);
-		List<Goods> list = goodsService.goodsList();
+		List<Goods> list = goodsService.goodsList(1);
 		resp.setCharacterEncoding("utf-8");
 		System.out.println(JSON.toJSONString(list));
 		resp.getWriter().write(JSON.toJSONString(list));

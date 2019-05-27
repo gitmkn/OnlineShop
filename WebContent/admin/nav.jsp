@@ -75,7 +75,7 @@
 							<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">入库管理</span></a>
 							<ul class="subnav">
 								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/warehouse/warehouseList.jsp" data-id="14">
-									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">入库列表</span></a>
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">入库记录</span></a>
 								</li>
 								<%-- <li class="subnav-li" href="${ pageContext.request.contextPath }/admin/warehouse/warehouseUpdate.jsp" data-id="13">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">入库信息修改</span></a>

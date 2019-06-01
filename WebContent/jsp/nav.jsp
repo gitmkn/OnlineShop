@@ -13,9 +13,9 @@
         <div class="inner-cont1 w1200">
           <div class="inner-cont2">
             <a href="${ pageContext.request.contextPath }/jsp/index.jsp">首页</a>
-            <a href="${ pageContext.request.contextPath }/goodsClass.gdo?type=5">女孩玩具</a>
-            <a href="${ pageContext.request.contextPath }/goodsClass.gdo?type=6">男孩玩具</a>
-            <a href="${ pageContext.request.contextPath }/goodsClass.gdo?type=7">婴儿玩具</a>
+            <a href="${ pageContext.request.contextPath }/goodsClass.gdo?type=6">女孩玩具</a>
+            <a href="${ pageContext.request.contextPath }/goodsClass.gdo?type=7">男孩玩具</a>
+            <a href="${ pageContext.request.contextPath }/goodsClass.gdo?type=8">婴儿玩具</a>
             <a href="${ pageContext.request.contextPath }/jsp/message.jsp">留言板</a>
             <a href="${ pageContext.request.contextPath }/jsp/about.jsp">关于我们</a>
             <c:if test="${ UserInfo != null}">

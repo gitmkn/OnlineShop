@@ -90,7 +90,7 @@ public class GoodsController extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void goodsIndex1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String idtype = req.getParameter("id");
+		String idtype = req.getParameter("type");
 		System.out.println(idtype);
 		if(idtype == null) idtype="1";
 		int typeid = Integer.parseInt(idtype);
@@ -121,13 +121,13 @@ public class GoodsController extends HttpServlet {
 	private void goodsClass(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int type = Integer.parseInt(req.getParameter("type"));
 		String type1 = "";
-		if(type == 5) {
+		if(type == 6) {
 			type1 = "女孩玩具";
 		}
-		if(type == 6) {
+		if(type == 7) {
 			type1 = "男孩玩具";
 		}
-		if(type == 7) {
+		if(type == 8) {
 			type1 = "婴儿玩具";
 		}
 		System.out.println(type);

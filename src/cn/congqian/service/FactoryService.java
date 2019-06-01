@@ -50,4 +50,21 @@ public class FactoryService {
 	public static GoodsTypeService geGoodsTypeService() {
 		return new GoodsTypeServiceImpl();
 	}
+	
+
+	/**
+	 * 购物车添加商品
+	 * @return
+	 */
+	public static CartService getCartService() {
+		return new CartServiceImpl();
+	}
+	
+	/**
+	 * 购物车添加商品
+	 * @return
+	 */
+	public static OrderService getOrderService() {
+		return new OrderServiceImpl();
+	}
 }

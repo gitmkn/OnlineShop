@@ -40,11 +40,11 @@
             </div>
             <div class="choose-attrs">
               <div class="color layui-clear"><span class="title">颜&nbsp;&nbsp;&nbsp;&nbsp;色</span> <div class="color-cont"><span class="btn">白色</span> <span class="btn active">粉丝</span></div></div>
-              <div class="number layui-clear"><span class="title">数&nbsp;&nbsp;&nbsp;&nbsp;量</span><div class="number-cont"><span class="cut btn">-</span><input onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" maxlength="4" type="" name="" value="1"><span class="add btn">+</span></div></div>
+              <div class="number layui-clear"><span class="title">数&nbsp;&nbsp;&nbsp;&nbsp;量</span><div class="number-cont"><span class="cut btn">-</span><input name="goods_sum" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" maxlength="4" type="" name="" value="1"><span class="add btn">+</span></div></div>
             </div>
             <div class="choose-btns">
               <button class="layui-btn layui-btn-primary purchase-btn">立刻购买</button>
-              <button class="layui-btn  layui-btn-danger car-btn"><i class="layui-icon layui-icon-cart-simple"></i>加入购物车</button>  
+              <button id="cart" class="layui-btn  layui-btn-danger car-btn"><i class="layui-icon layui-icon-cart-simple"></i>加入购物车</button>  
             </div>
           </div>
         </div>
@@ -78,7 +78,26 @@
         }
         $('.number-cont input').val(cur)
       })
-      
+      $("#cart").click(function(){
+    	  var goods = '${ goods.goods_id }';
+    	  var user = '${ UserInfo.id }';
+    	  var goodssum = $('input[name=goods_sum]').val();
+    	  if(user == 0){
+    		  alert("请登录！！");
+    		  window.document.location.href="<%=request.getContextPath()%>/jsp/login.jsp";
+    	  }else{
+    		  $.ajax({
+            	  type:'get',
+            	  url:'${ pageContext.request.contextPath }/cartAdd.cdo?goods='+goods+'&&user='+user+'&&goodssum='+goodssum,
+            	  success:function(data){
+            		  if(data == "1"){
+            			  alert("添加成功");
+            		  }
+            	  }
+              });
+    	  }
+    	  
+      });
   });
 </script>
 

@@ -155,7 +155,7 @@
 				/* 请求“今日必抢” */
 				$.ajax({
 					type:"get",
-					url:"${ pageContext.request.contextPath }/goodsIndex.gdo?type=1",
+					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=1",
 					dataType:'json',
 					success:function(data){
 						var j = Number(data.length);//总个数
@@ -176,7 +176,7 @@
 				/* 请求“更多推荐” */
 				$.ajax({
 					type:"get",
-					url:"${ pageContext.request.contextPath }/goodsIndex.gdo?type=5",
+					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=5",
 					dataType:'json',
 					success:function(data){
 						var goods = "";
@@ -194,7 +194,7 @@
 				/* 请求“1F” */
 				$.ajax({
 					type:"get",
-					url:"${ pageContext.request.contextPath }/goodsIndex.gdo?type=2",
+					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=2",
 					dataType:'json',
 					success:function(data){
 						var div = "";
@@ -209,7 +209,7 @@
 				/* 请求“2F” */
 				$.ajax({
 					type:"get",
-					url:"${ pageContext.request.contextPath }/goodsIndex.gdo?type=3",
+					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=3",
 					dataType:'json',
 					success:function(data){
 						var div = "";
@@ -224,7 +224,7 @@
 				/* 请求“3F” */
 				$.ajax({
 					type:"get",
-					url:"${ pageContext.request.contextPath }/goodsIndex.gdo?type=4",
+					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=4",
 					dataType:'json',
 					success:function(data){
 						var div = "";

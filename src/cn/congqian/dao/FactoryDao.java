@@ -58,4 +58,28 @@ public class FactoryDao {//工厂类
 	public static GoodsTypeDao geGoodsTypeDao() {
 		return new GoodsTypeDaoImpl();
 	}
+	
+	/**
+	 * 购物车
+	 * @return
+	 */
+	public static CartDao geCartDao() {
+		return new CartDaoImpl();
+	}
+	
+	/**
+	 * 订单
+	 * @return
+	 */
+	public static OrderDao getOrderDao() {
+		return new OrderDaoImpl();
+	}
+	/**
+	 * 订单详情
+	 * @return
+	 */
+	public static OrderDetailsDao getOrderDetailsDao() {
+		return new OrderDetailsDaoImpl();
+	}
+	
 }

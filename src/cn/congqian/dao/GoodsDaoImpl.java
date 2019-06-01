@@ -34,7 +34,7 @@ public class GoodsDaoImpl extends BaseDao<Goods> implements GoodsDao{
 		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_name "
 				+ "from t_goods,t_goods_type "
 				+ "where t_goods.goods_type = t_goods_type.type_id "
-				+ "order by goods_createtime desc;";
+				+ "order by goods_createtime desc";
 		return super.getList(sql);
 	}
 
@@ -43,15 +43,17 @@ public class GoodsDaoImpl extends BaseDao<Goods> implements GoodsDao{
 		// TODO Auto-generated method stub
 		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_name "
 				+ "from t_goods,t_goods_type "
-				+ "where t_goods.goods_type = t_goods_type.type_id and goods_type = ?";
+				+ "where t_goods.goods_type = t_goods_type.type_id and goods_type = ? "
+				+ "and goods_status = 1 "
+				+ "order by goods_createtime desc";
 		return super.getList(sql,type);
 	}
 
 	@Override
 	public int goodsAdd(Goods goods) {
 		// TODO Auto-generated method stub
-		String sql = "insert into t_goods(goods_name,goods_describe,goods_price,goods_createtime,goods_type,picture_id) value(?,?,?,?,?,?)";
-		return super.update(sql, goods.getGoods_name(),goods.getGoods_describe(),goods.getGoods_price(),goods.getGoods_createtime(),goods.getType_id(),goods.getPicture_id());
+		String sql = "insert into t_goods(goods_name,goods_describe,goods_price,goods_createtime,goods_type,goods_status,picture_id) value(?,?,?,?,?,?,?)";
+		return super.update(sql, goods.getGoods_name(),goods.getGoods_describe(),goods.getGoods_price(),goods.getGoods_createtime(),goods.getType_id(),goods.getGoods_status(),goods.getPicture_id());
 	}
 	
 	@Override

@@ -46,7 +46,7 @@
 						<a href="${ pageContext.request.contextPath }/exit.udo">退出</a>
 					</div>
 				<div class="sp-cart">
-					<a href="${ pageContext.request.contextPath }/jsp/shopcar.jsp">购物车</a><span>2</span>
+					<a href="${ pageContext.request.contextPath }/cartList.cdo?userid=${ UserInfo.id }">购物车</a><!-- <span>2</span> -->
 				</div>
 				</c:if>
 			</div>

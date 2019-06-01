@@ -19,15 +19,15 @@
 	<div id="hd"></div>
     <div id="bd">
     	<div style="margin: 20px 20px 0 20px">
-    		<input type="button" id="add" class="btn btn-info" value="添加">
+    		<input type="button" id="dfh" class="btn btn-info" value="待发货">
+    		<input type="button" id="yfh" class="btn btn-info" value="已发货">
+    		<input type="button" id="ysh" class="btn btn-info" value="已收货">
     		<hr>
         	<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>订单ID</th>
-						<th>用户ID</th>
 						<th>用户姓名</th>
-						<th>用户电话</th>
 						<th>创建时间</th>
 						<th>付款编码</th>
 					</tr>
@@ -49,17 +49,15 @@
 $(function(){
 	$.ajax({
 		type:'get',
-		url:'${ pageContext.request.contextPath }/supplierList.sdo',
+		url:'${ pageContext.request.contextPath }/OrderList.odo?status=1',
 		dataType: "json",
 		success:function(data){
 			$.each(data, function(index, item){
 				var div = "<tr>"
-					+"<td>"+item.supplier_id+"</td>"
-					+"<td>"+item.supplier_name+"</td>"
-					+"<td>"+item.supplier_username+"</td>"
-					+"<td>"+item.supplier_address+"</td>"
-					+"<td>"+item.supplier_email+"</td>"
-					+"<td>"+item.supplier_phone+"</td></tr>";
+					+"<td>"+item.order_id+"</td>"
+					+"<td>"+item.username+"</td>"
+					+"<td>"+getMyDate(item.order_createtime)+"</td>"
+					+"<td>"+item.order_bankID+"</td></tr>";
 				$("tbody").append(div);
 			})
 			goPage(1, 3);//分页
@@ -74,6 +72,32 @@ $('body').on('click','tr',function(){
 $('#add').on('click',function(){
 	window.location.href="supplierAdd.jsp";
 });
+
+
+
+//时间转换
+function getMyDate(str){
+	if(str == null){
+		return "";
+	}else{
+		var oDate = new Date(str),  
+	    oYear = oDate.getFullYear(),  
+	    oMonth = oDate.getMonth()+1,  
+	    oDay = oDate.getDate(),  
+	    oHour = oDate.getHours(),  
+	    oMin = oDate.getMinutes(),  
+	    oSen = oDate.getSeconds(),  
+	    oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay) +' '+ getzf(oHour) +':'+ getzf(oMin) +':'+getzf(oSen);//最后拼接时间  
+	    return oTime;  
+	}
+}; 
+//补0操作
+function getzf(num){  
+  if(parseInt(num) < 10){  
+      num = '0'+num;  
+  }  
+  return num;  
+}
 </script>
 </body>
 </html>

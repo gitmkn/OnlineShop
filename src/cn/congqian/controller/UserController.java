@@ -118,6 +118,7 @@ public class UserController extends HttpServlet {
 			String password1 = new Md5Util().getMd5(pwd);
 			user.setPhone(phone);
 			user.setPassword(password1);
+			user.setStatus(1);
 			int i = userServer.insert(user);
 			System.out.println(user);
 			if (i > 0) {

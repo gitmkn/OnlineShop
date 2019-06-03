@@ -21,9 +21,10 @@ public class GoodsDaoImpl extends BaseDao<Goods> implements GoodsDao{
 	@Override
 	public Goods goodsSelectById(int id) {
 		// TODO Auto-generated method stub
-		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_id,t_goods_type.type_name,picture_id "
-				+ "from t_goods,t_goods_type "
+		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_id,t_goods_type.type_name,t_goods_picture.picture_url "
+				+ "from t_goods,t_goods_type,t_goods_picture "
 				+ "where t_goods.goods_type = t_goods_type.type_id "
+				+ "and t_goods.picture_id = t_goods_picture.picture_id "
 				+ "and goods_id=?";
 		return super.get(sql, id);
 	}
@@ -41,9 +42,11 @@ public class GoodsDaoImpl extends BaseDao<Goods> implements GoodsDao{
 	@Override
 	public List<Goods> goodsSelectByType(int type) {
 		// TODO Auto-generated method stub
-		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_name "
-				+ "from t_goods,t_goods_type "
-				+ "where t_goods.goods_type = t_goods_type.type_id and goods_type = ? "
+		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_name,t_goods_picture.picture_url "
+				+ "from t_goods,t_goods_type,t_goods_picture "
+				+ "where t_goods.goods_type = t_goods_type.type_id "
+				+ "and t_goods.picture_id = t_goods_picture.picture_id "
+				+ "and goods_type = ? "
 				+ "and goods_status = 1 "
 				+ "order by goods_createtime desc";
 		return super.getList(sql,type);
@@ -90,4 +93,34 @@ public class GoodsDaoImpl extends BaseDao<Goods> implements GoodsDao{
 		String sql = "update t_goods set goods_sum=? where goods_id=?";
 		return super.update(sql, goods.getGoods_sum(),goods.getGoods_id());
 	}
+
+	@Override
+	public List<Goods> goodsBySearch(String content) {
+		// TODO Auto-generated method stub
+		String contents = "'%"+content+"%'";
+		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_name "
+				+ "from t_goods,t_goods_type "
+				+ "where t_goods.goods_type = t_goods_type.type_id "
+				+ "and goods_name like "+contents+" "
+				+ "and goods_status = 1 "
+				+ "order by goods_createtime desc";
+		System.out.println(contents);
+		return super.getList(sql);
+	}
+
+	@Override
+	public int goodsUpdateSum(int goods_id, int goods_sum) {
+		// TODO Auto-generated method stub
+		String sql = "update t_goods set goods_sum=goods_sum-? where goods_id=?";
+		return super.update(sql, goods_sum,goods_id);
+	}
+
+	@Override
+	public int goodsUpdateDescribe(int goods_id, String goods_describe) {
+		// TODO Auto-generated method stub
+		String sql = "update t_goods set goods_describe=? where goods_id=?";
+		return super.update(sql, goods_describe,goods_id);
+	}
+
+	
 }

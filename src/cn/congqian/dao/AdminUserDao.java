@@ -1,5 +1,7 @@
 package cn.congqian.dao;
 
+import java.util.List;
+
 import cn.congqian.model.AdminUser;
 
 /**
@@ -22,4 +24,26 @@ public interface AdminUserDao {
 	 * @return
 	 */
 	public int updatePassword(AdminUser user);
+	
+	
+	/**
+	 * 管理员列表
+	 * @param user
+	 * @return
+	 */
+	public List<AdminUser> AdminList(int status);
+	
+	/**
+	 * 修改管理员状态
+	 * @param user
+	 * @return
+	 */
+	public int updateStatus(AdminUser adminUser);
+	
+	/**
+	 * 添加管理员
+	 * @param user
+	 * @return
+	 */
+	public int insertAdmin(AdminUser adminUser);
 }

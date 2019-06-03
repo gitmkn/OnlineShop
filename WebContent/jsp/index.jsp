@@ -17,6 +17,94 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<script type="text/javascript">
+			$(function() {
+				/* 请求“今日必抢” */
+				$.ajax({
+					type:"get",
+					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=1",
+					dataType:'json',
+					success:function(data){
+						var j = Number(data.length);//总个数
+						var i = Math.ceil(data.length/4);
+						var div = '';
+						$.each(data,function(index,item){
+							div += '<div class="item">'+
+							'<a href="${ pageContext.request.contextPath }/goods.gdo?id='+item.goods_id+'">'+
+							'<img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'">'+
+							'<div class="title">'+item.goods_name.substring(0,13)+'...</div>'+
+							'<div class="price"><span>￥ '+item.goods_price+'</span></div>'+
+							'</div>';
+						})
+						div = '<div class="item-box">'+div+'</div>';
+						$(".item-box-item").append(div);
+					}
+				});
+				/* 请求“更多推荐” */
+				$.ajax({
+					type:"get",
+					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=5",
+					dataType:'json',
+					success:function(data){
+						var goods = "";
+						$.each(data,function(index,item){
+							goods += '<div class="list-item">'+
+							'<a href="${ pageContext.request.contextPath }/goods.gdo?id='+item.goods_id+'">'+
+							'<img style="width:160px;height:160px;" src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'">'+
+							'<p>'+item.goods_name.substring(0,24)+'</p>'+
+							'<span>￥ '+item.goods_price+'</span></a>'+
+							'</div>';
+						}),
+						$(".product-item-box").append(goods);
+					}
+				});
+				/* 请求“1F” */
+				$.ajax({
+					type:"get",
+					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=2",
+					dataType:'json',
+					success:function(data){
+						var div = "";
+						$.each(data,function(index,item){
+							if(index <= 4){
+								div += '<a href="javascript:;" class="top-img">'+'<img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'" alt=""></a>';
+							}
+						})
+						$("#1f").append(div);
+					}
+				});
+				/* 请求“2F” */
+				$.ajax({
+					type:"get",
+					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=3",
+					dataType:'json',
+					success:function(data){
+						var div = "";
+						$.each(data,function(index,item){
+							if(index <= 4){
+								div += '<a href="javascript:;" class="top-img">'+'<img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'" alt=""></a>';
+							}
+						})
+						$("#2f").append(div);
+					}
+				});
+				/* 请求“3F” */
+				$.ajax({
+					type:"get",
+					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=4",
+					dataType:'json',
+					success:function(data){
+						var div = "";
+						$.each(data,function(index,item){
+							if(index <= 4){
+								div += '<a href="javascript:;" class="top-img">'+'<img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'" alt=""></a>';
+							}
+						})
+						$("#3f").append(div);
+					}
+				});
+			});
+		</script>
 </head>
 <body id="list-cont">
 
@@ -138,12 +226,12 @@
 				<div class="product-list-cont w1200">
 					<h4>更多推荐</h4>
 					<div class="product-item-box layui-clear">
-						<div class="list-item">
+						<%-- <div class="list-item">
 							<a href="javascript:;"><img
 								src="${ pageContext.request.contextPath }/res/static/img/more2.jpg"></a>
 							<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>
 							<span>￥100.00</span>
-						</div>
+						</div> --%>
 					</div>
 				</div>
 			</div>
@@ -151,92 +239,7 @@
 
 		<%@ include file="foot.jsp"%>
 		<script type="text/javascript">
-			$(function() {
-				/* 请求“今日必抢” */
-				$.ajax({
-					type:"get",
-					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=1",
-					dataType:'json',
-					success:function(data){
-						var j = Number(data.length);//总个数
-						var i = Math.ceil(data.length/4);
-						var div = '';
-						$.each(data,function(index,item){
-							div += '<div class="item">'+
-							'<a href="${ pageContext.request.contextPath }/goods.gdo?id='+item.goods_id+'">'+
-							'<img src="${ pageContext.request.contextPath }/res/static/img/more3.jpg">'+
-							'<div class="title">'+item.goods_name.substring(0,13)+'...</div>'+
-							'<div class="price"><span>￥ '+item.goods_price+'</span></div>'+
-							'</div>';
-						})
-						div = '<div class="item-box">'+div+'</div>';
-						$(".item-box-item").append(div);
-					}
-				});
-				/* 请求“更多推荐” */
-				$.ajax({
-					type:"get",
-					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=5",
-					dataType:'json',
-					success:function(data){
-						var goods = "";
-						$.each(data,function(index,item){
-							goods += '<div class="list-item">'+
-							'<a href="${ pageContext.request.contextPath }/goods.gdo?id='+item.goods_id+'">'+
-							'<img src="${ pageContext.request.contextPath }/res/static/img/more3.jpg">'+
-							'<p>'+item.goods_name+'</p>'+
-							'<span>￥ '+item.goods_price+'</span></a>'+
-							'</div>';
-						}),
-						$(".product-item-box").append(goods);
-					}
-				});
-				/* 请求“1F” */
-				$.ajax({
-					type:"get",
-					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=2",
-					dataType:'json',
-					success:function(data){
-						var div = "";
-						$.each(data,function(index,item){
-							if(index <= 4){
-								div += '<a href="javascript:;" class="top-img">'+'<img src="${ pageContext.request.contextPath }/res/static/img/s_img11.jpg" alt=""></a>';
-							}
-						})
-						$("#1f").append(div);
-					}
-				});
-				/* 请求“2F” */
-				$.ajax({
-					type:"get",
-					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=3",
-					dataType:'json',
-					success:function(data){
-						var div = "";
-						$.each(data,function(index,item){
-							if(index <= 4){
-								div += '<a href="javascript:;" class="top-img">'+'<img src="${ pageContext.request.contextPath }/res/static/img/s_img7.jpg" alt=""></a>';
-							}
-						})
-						$("#2f").append(div);
-					}
-				});
-				/* 请求“3F” */
-				$.ajax({
-					type:"get",
-					url:"${ pageContext.request.contextPath }/goodsIndex1.gdo?type=4",
-					dataType:'json',
-					success:function(data){
-						var div = "";
-						$.each(data,function(index,item){
-							if(index <= 4){
-								div += '<a href="javascript:;" class="top-img">'+'<img src="${ pageContext.request.contextPath }/res/static/img/s_img8.jpg" alt=""></a>';
-							}
-						})
-						$("#3f").append(div);
-					}
-				});
-			});
+			
 			baseUrl = '${ pageContext.request.contextPath }';
 			layui.config({
 				base : '${ pageContext.request.contextPath }/res/static/js/util/' //你存放新模块的目录，注意，不是layui的模块目录
@@ -268,6 +271,11 @@
 						//    }
 						//  })
 
+						
+						
+				
+						
+						
 					});
 		</script>
 </body>

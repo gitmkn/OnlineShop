@@ -13,6 +13,7 @@
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/res/layui/layui.js"></script>
 	<script type="text/javascript" src="${ pageContext.request.contextPath }/res/static/js/jquery.js"></script> --%>
+	
 </head>
 
 <body>
@@ -64,13 +65,12 @@
 					</a>
 				</h1>
 				<div class="mallSearch">
-					<form action="" class="layui-form" novalidate>
+					<form action="${ pageContext.request.contextPath }/goodsSearch.gdo" class="layui-form" novalidate>
 						<input type="text" name="title" required lay-verify="required"
 							autocomplete="off" class="layui-input" placeholder="请输入需要的商品">
 						<button class="layui-btn" lay-submit lay-filter="formDemo">
 							<i class="layui-icon layui-icon-search"></i>
 						</button>
-						<input type="hidden" name="" value="">
 					</form>
 				</div>
 			</div>

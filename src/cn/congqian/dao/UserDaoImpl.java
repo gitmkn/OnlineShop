@@ -45,8 +45,8 @@ public class UserDaoImpl extends BaseDao<User> implements UserDao{
 	@Override
 	public int insert(User user) {
 		// TODO Auto-generated method stub
-		String sql = "insert into t_user(phone,password) value(?,?)";
-		return super.update(sql, user.getPhone(),user.getPassword());
+		String sql = "insert into t_user(phone,password,status) value(?,?,?)";
+		return super.update(sql, user.getPhone(),user.getPassword(),user.getStatus());
 	}
 
 	

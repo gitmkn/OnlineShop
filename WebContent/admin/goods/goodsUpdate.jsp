@@ -35,6 +35,7 @@ String getId = request.getParameter("getId");
             <h2 class="subfild">
             	<span>基本信息</span>
             </h2>
+            <input type="text" name="goods_id" value="<%=getId %>" />
             <div class="subfild-content base-info">
             	<div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>商品名称</label>
@@ -84,7 +85,7 @@ String getId = request.getParameter("getId");
                 	<label><span class="impInfo">*</span>商品图</label>
                 	<div class="kv-item-content">
 						<span class="text"></span>
-						<img src="" width="10" height="10">
+						
                         <!-- <input type="file" name="uploadFile"/> -->
                         <!-- <input type="button" class="button normal long2" value="浏览.." /> -->
                         <input type="file" name="uploadFile">
@@ -92,9 +93,10 @@ String getId = request.getParameter("getId");
                     <!-- <span class="kv-item-tip">标题字数限制在35个字符</span> -->
                 </div>
                 <div class="kv-item ue-clear">
+                	<label><span class="impInfo">*</span>商品图</label>
                 	<div class="kv-item-content">
 						<span class="text"></span>
-						<img src="" width="10" height="10">
+						<img id="imgfile" src="" width="100" height="100">
                     </div>
                     <!-- <span class="kv-item-tip">标题字数限制在35个字符</span> -->
                 </div>
@@ -151,34 +153,36 @@ $(function(){
 	            }
 	        }
 	    });
-	});
-	
 	//请求商品类型
-	$.ajax({
-		type : "GET",
-		url : "${ pageContext.request.contextPath }/goodstype.gado",
-		dataType:"json",
-		success : function(data) {
-			for(var i=0;i<data.length;i++){
-				$("select[name='goods_type']").append('<option value="'+data[i].type_id+'">'+data[i].type_name+'</option>');
+		$.ajax({
+			type : "GET",
+			url : "${ pageContext.request.contextPath }/goodstype.gado",
+			dataType:"json",
+			success : function(data) {
+				for(var i=0;i<data.length;i++){
+					$("select[name='goods_type']").append('<option value="'+data[i].type_id+'">'+data[i].type_name+'</option>');
+				}
 			}
-		}
+		});
+		
+		//请求商品详细信息
+		var getId = '<%=getId %>';
+		$.ajax({
+			type : "GET",
+			url : "${ pageContext.request.contextPath }/goods.gado?goodsId="+getId,
+			dataType:"json",
+			success : function(data) {
+				$('input[name=goods_name]').val(data.goods_name);
+				$('body option[value='+data.type_id+']').attr("selected","selected");
+				$('input[name=goods_price]').val(data.goods_price);
+				$('#imgfile').attr('src','${ pageContext.request.contextPath }/admin/goods/goodsImg/'+data.picture_url);
+				/* $('input[name=uploadFile]').val(data.picture_url); */
+				$('.summernote').summernote('code',data.goods_describe);
+			}
+		});
 	});
 	
-	//请求商品详细信息
-	var getId = '<%=getId %>';
-	$.ajax({
-		type : "GET",
-		url : "${ pageContext.request.contextPath }/goods.gado?goodsId="+getId,
-		dataType:"json",
-		success : function(data) {
-			$('input[name=goods_name]').val(data.goods_name);
-			$('body option[value='+data.type_id+']').attr("selected","selected");
-			$('input[name=goods_price]').val(data.goods_price);
-			$('input[name=uploadFile]').val(data.picture_url);
-			$('.summernote').summernote('code',data.goods_describe);
-		}
-	});
+	
 	$(".button").click(function(){
 		var code1 = $('.summernote').summernote('code');
 		$("#summernote").val(code1);

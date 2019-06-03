@@ -139,4 +139,17 @@ public class GoodsController extends HttpServlet {
 		resp.getWriter().write(JSON.toJSONString(list));
 		req.getRequestDispatcher("/jsp/commodity.jsp").forward(req, resp);
 	}
+	
+	private void goodsSearch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String content = req.getParameter("title");
+		
+		System.out.println(content);
+		List<Goods> list = goodsService.goodsBySearch(content);
+		resp.setCharacterEncoding("utf-8");
+		req.setAttribute("goodslist", list);
+		req.setAttribute("type", content);
+		System.out.println(JSON.toJSONString(list));
+		resp.getWriter().write(JSON.toJSONString(list));
+		req.getRequestDispatcher("/jsp/commodity.jsp").forward(req, resp);
+	}
 }

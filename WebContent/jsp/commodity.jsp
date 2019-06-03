@@ -65,7 +65,7 @@
             <c:forEach var="goods" items="${ goodslist }">
             <div class="item">
                 <div class="img">
-                  <a href="${ pageContext.request.contextPath }/goods.gdo?id=${ goods.goods_id }"><img src="${ pageContext.request.contextPath }/res/static/img/paging_img1.jpg"></a>
+                  <a href="${ pageContext.request.contextPath }/goods.gdo?id=${ goods.goods_id }"><img style="width:280px;height:280px;" src="${ pageContext.request.contextPath }/admin/goods/goodsImg/${ goods.picture_url }"></a>
                 </div>
                 <div class="text">
                   <p class="title">${fn:substring(goods.goods_name, 0, 16)}</p>
@@ -76,7 +76,7 @@
                 </div>
               </div>
             </c:forEach>
-              <div class="item">
+              <%-- <div class="item">
                 <div class="img">
                   <a href="javascript:;"><img src="${ pageContext.request.contextPath }/res/static/img/paging_img1.jpg"></a>
                 </div>
@@ -87,7 +87,7 @@
                     <span class="nub">1266付款</span>
                   </p>
                 </div>
-              </div>
+              </div> --%>
               <!-- <div class="item">
                 <div class="img">
                   <a href="javascript:;"><img src="../res/static/img/paging_img2.jpg"></a>

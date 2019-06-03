@@ -43,6 +43,12 @@ public interface GoodsService {
 	public int goodsUpdate(Goods goods, GoodsPicture goodsPicture);
 	
 	/**
+	 * 修改商品内容
+	 * @return
+	 */
+	public int goodsUpdateDescribe(int goods_id, String goods_describe);
+	
+	/**
 	 * 修改商品状态
 	 * @return
 	 */
@@ -52,4 +58,16 @@ public interface GoodsService {
 	 * @return
 	 */
 	public int updateSum(Goods goods);
+	
+	/**
+	 * 搜索商品
+	 * @return
+	 */
+	public List<Goods> goodsBySearch(String content);
+	
+	/**
+	 * 修改数量
+	 * @return
+	 */
+	public int goodsUpdateSum(int goods_id,int goods_sum);
 }

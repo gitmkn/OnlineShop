@@ -2,6 +2,7 @@ package cn.congqian.controller;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.alibaba.fastjson.JSON;
+
 import cn.congqian.model.AdminUser;
+import cn.congqian.model.User;
 import cn.congqian.service.AdminUserService;
 import cn.congqian.service.FactoryService;
 import cn.congqian.utils.Md5Util;
@@ -90,6 +94,55 @@ public class UserAdminController extends HttpServlet {
 		} else {
 			System.out.println("修改密码失败");
 		}
+
+	}
+	
+	
+	/**
+	 * 管理员列表
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void adminList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int status = Integer.parseInt(req.getParameter("status"));
+		List<AdminUser> list = adminUserServer.AdminList(status);
+		System.out.println(list); 
+//		System.out.println(json);
+		resp.setCharacterEncoding("utf-8");
+		resp.getWriter().write(JSON.toJSONString(list));
+	}
+	
+	/**
+	 * 管理员添加
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void adminAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String name = req.getParameter("name");
+		String pass = req.getParameter("password");
+		String password = new Md5Util().getMd5(pass);
+		AdminUser adminUser = new AdminUser();
+		adminUser.setName(name);
+		adminUser.setPassword(password);
+		int i = adminUserServer.insertAdmin(adminUser);
+		resp.sendRedirect(req.getContextPath() + "/admin/user/adminList.jsp");
+	}
+	
+	
+	private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		AdminUser adminUser = new AdminUser();
+		int id = Integer.parseInt(req.getParameter("id"));
+		int status = Integer.parseInt(req.getParameter("status"));
+		adminUser.setId(id);
+		adminUser.setStatus(status);
+		int update = adminUserServer.updateStatus(adminUser);
+		resp.sendRedirect(req.getContextPath() + "/admin/user/adminList.jsp");
 
 	}
 

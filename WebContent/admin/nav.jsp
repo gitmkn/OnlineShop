@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="control.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -32,10 +33,12 @@
 								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/user/userList.jsp"  data-id="2">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">用户列表</span></a>
 								</li>
-								<!-- <li class="subnav-li" href="table.html" data-id="10">
-									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">地方新闻管理</span></a>
+								<c:if test="${ adminUserInfo.type == 1 }">
+								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/user/adminList.jsp" data-id="10">
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">管理员列表</span></a>
 								</li>
-								<li class="subnav-li" data-id="11">
+								</c:if>
+								<!-- <li class="subnav-li" data-id="11">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">自定义设置1</span></a>
 								</li> -->
 							</ul>
@@ -63,7 +66,7 @@
 								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/order/orderList.jsp" data-id="5">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">订单列表</span></a>
 								</li>
-								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/order/orderUpdate.jsp" data-id="6">
+								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/order/order1.jsp" data-id="6">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">订单详情查询</span></a>
 								</li>
 								<!-- <li class="subnav-li" data-id="7">

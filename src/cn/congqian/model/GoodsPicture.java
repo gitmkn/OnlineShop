@@ -12,7 +12,7 @@ public class GoodsPicture {
 	/**
 	 * 商品id
 	 */
-	private Goods goods_id;
+	private int goods_id;
 	public String getPicture_id() {
 		return picture_id;
 	}
@@ -25,10 +25,10 @@ public class GoodsPicture {
 	public void setPicture_url(String picture_url) {
 		this.picture_url = picture_url;
 	}
-	public Goods getGoods_id() {
+	public int getGoods_id() {
 		return goods_id;
 	}
-	public void setGoods_id(Goods goods_id) {
+	public void setGoods_id(int goods_id) {
 		this.goods_id = goods_id;
 	}
 	@Override

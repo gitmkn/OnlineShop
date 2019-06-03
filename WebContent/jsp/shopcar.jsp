@@ -77,7 +77,7 @@
             </li>
             <li class="th th-item">
               <div class="item-cont">
-                <a href="javascript:;"><img src="../res/static/img/etwj.jpg" alt=""></a>
+                <a href="javascript:;"><img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/${ list.picture_url }" alt=""></a>
                 <div class="text">
                   <div class="title">${ list.goods_name }</div>
                   <%-- <p><span>粉色</span>  <span>${ list.createtime }</span></p> --%>
@@ -177,8 +177,8 @@
 			checkID[i] =$(this).val();//购物车id
 			sum[i] = $(this).parent(".cart-checkbox").parent(".checkbox").parent(".th").parent(".item-content").find("input[name=sum]").val();//商品数量
 			goodssum[i] = $(this).parent(".cart-checkbox").parent(".checkbox").parent(".th").parent(".item-content").find("input[name=goodssum]").val();
-			if(sum[i] > goodssum[i]){
-				alert("超出了库存");
+			if(sum[i] - goodssum[i] > 0){
+				alert("超出了库存,现有"+goodssum[i]+",已为您修改数量");
 				sum[i] = goodssum[i];
 			}
 		});

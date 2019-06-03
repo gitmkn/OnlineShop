@@ -70,6 +70,7 @@ public class GoodsServiceImpl implements GoodsService {
 			conn = JdbcUtils.getConnection();
 			conn.setAutoCommit(false);// 开启事务
 			i = goodsDao.goodsUpdate(goods);
+			System.out.println("shiwu "+goodsPicture);
 			j = goodsDao.goodsPictureDelete(goodsPicture);
 			k = goodsDao.goodsPictureAdd(goodsPicture);
 			conn.commit();// 提交事务
@@ -93,4 +94,24 @@ public class GoodsServiceImpl implements GoodsService {
 		// TODO Auto-generated method stub
 		return goodsDao.updateSum(goods);
 	}
+
+	@Override
+	public List<Goods> goodsBySearch(String content) {
+		// TODO Auto-generated method stub
+		return goodsDao.goodsBySearch(content);
+	}
+
+	@Override
+	public int goodsUpdateSum(int goods_id, int goods_sum) {
+		// TODO Auto-generated method stub
+		return goodsDao.goodsUpdateSum(goods_id,goods_sum);
+	}
+
+	@Override
+	public int goodsUpdateDescribe(int goods_id, String goods_describe) {
+		// TODO Auto-generated method stub
+		return goodsDao.goodsUpdateDescribe(goods_id,goods_describe);
+	}
+
+	
 }

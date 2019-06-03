@@ -19,6 +19,15 @@ public class AdminUser {
 	 */
 	private String password;
 	
+	/**
+	 * 类型
+	 */
+	private int type;
+	/**
+	 * 状态
+	 */
+	private int status;
+	
 	public int getId() {
 		return id;
 	}
@@ -37,9 +46,23 @@ public class AdminUser {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
-		return "AdminUser [id=" + id + ", username=" + name + ", password=" + password + "]";
+		return "AdminUser [id=" + id + ", name=" + name + ", password=" + password + ", type=" + type + ", status="
+				+ status + "]";
 	}
+	
 	
 }

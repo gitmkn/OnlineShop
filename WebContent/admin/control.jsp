@@ -8,7 +8,7 @@
 %>
 <script>
  alert("请登录!!!");
- window.document.location.href="<%=request.getContextPath()%>/admin/login.jsp";
+ window.parent.parent.location.href="<%=request.getContextPath()%>/admin/login.jsp";
 </script>
 <%
 	}

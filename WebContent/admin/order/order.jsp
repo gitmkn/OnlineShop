@@ -71,7 +71,7 @@
         <table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<!-- <th>图片</th> -->
+					<th>图片</th>
 					<th>商品名称</th>
 					<th>商品数量</th>
 				</tr>
@@ -111,6 +111,7 @@ $(function(){
 			$.each(data, function(index, item){
 				if(item.order_price == null) item.order_price = 0;
 				var div = "<tr>"
+					+"<td><img style='width:50px;height:50px;' src='${ pageContext.request.contextPath }/admin/goods/goodsImg/"+item.picture_url+"' /></td>"
 					+"<td>"+item.goods_name+"</td>"
 					+"<td>"+item.goods_sum+"</td></tr>";
 				$("tbody").append(div);

@@ -41,6 +41,11 @@ public interface GoodsService {
 	 * @return
 	 */
 	public int goodsUpdate(Goods goods, GoodsPicture goodsPicture);
+	/**
+	 * 修改商品
+	 * @return
+	 */
+	public int goodsUpdate2(Goods goods, GoodsPicture goodsPicture);
 	
 	/**
 	 * 修改商品内容

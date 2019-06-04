@@ -67,7 +67,8 @@
 						var div = "";
 						$.each(data,function(index,item){
 							if(index <= 4){
-								div += '<a href="javascript:;" class="top-img">'+'<img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'" alt=""></a>';
+								div += '<a href="${ pageContext.request.contextPath }/goods.gdo?id='+item.goods_id+'" class="top-img">'
+								+'<img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'" alt=""></a>';
 							}
 						})
 						$("#1f").append(div);
@@ -82,7 +83,7 @@
 						var div = "";
 						$.each(data,function(index,item){
 							if(index <= 4){
-								div += '<a href="javascript:;" class="top-img">'+'<img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'" alt=""></a>';
+								div += '<a href="${ pageContext.request.contextPath }/goods.gdo?id='+item.goods_id+'" class="top-img">'+'<img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'" alt=""></a>';
 							}
 						})
 						$("#2f").append(div);
@@ -97,7 +98,7 @@
 						var div = "";
 						$.each(data,function(index,item){
 							if(index <= 4){
-								div += '<a href="javascript:;" class="top-img">'+'<img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'" alt=""></a>';
+								div += '<a href="${ pageContext.request.contextPath }/goods.gdo?id='+item.goods_id+'" class="top-img">'+'<img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'" alt=""></a>';
 							}
 						})
 						$("#3f").append(div);
@@ -140,18 +141,17 @@
 
 			<div class="product-cont w1200" id="product-cont">
 				<div class="product-item product-item1 layui-clear">
+					<a href="${ pageContext.request.contextPath }/goodsClass.gdo?type=2">
 					<div class="left-title">
 						<h4>
 							<i>1F</i>
 						</h4>
-						<img
-							src="${ pageContext.request.contextPath }/res/static/img/icon_gou.png">
-						<h5>女孩玩具</h5>
+						<img src="${ pageContext.request.contextPath }/res/static/img/icon_gou.png">
+						<h5>1F最新</h5>
 					</div>
+					</a>
 					<div class="right-cont">
-						<a href="javascript:;" class="top-img"><img
-							src="${ pageContext.request.contextPath }/res/static/img/img12.jpg"
-							alt=""></a>
+						<a href="${ pageContext.request.contextPath }/goodsClass.gdo?type=2" class="top-img"><img src="${ pageContext.request.contextPath }/res/static/img/img12.jpg" alt=""></a>
 						<div class="img-box" id="1f">
 							<%-- <a href="javascript:;"><img
 								src="${ pageContext.request.contextPath }/res/static/img/s_img7.jpg"></a>
@@ -167,16 +167,18 @@
 					</div>
 				</div>
 				<div class="product-item product-item2 layui-clear">
+					<a href="${ pageContext.request.contextPath }/goodsClass.gdo?type=3">
 					<div class="left-title">
 						<h4>
 							<i>2F</i>
 						</h4>
 						<img
 							src="${ pageContext.request.contextPath }/res/static/img/icon_gou.png">
-						<h5>男孩玩具</h5>
+						<h5>2F最新</h5>
 					</div>
+					</a>
 					<div class="right-cont">
-						<a href="javascript:;" class="top-img"><img
+						<a href="${ pageContext.request.contextPath }/goodsClass.gdo?type=3"  class="top-img"><img
 							src="${ pageContext.request.contextPath }/res/static/img/img12.jpg"
 							alt=""></a>
 						<div class="img-box" id="2f">
@@ -194,16 +196,18 @@
 					</div>
 				</div>
 				<div class="product-item product-item3 layui-clear">
+					<a href="${ pageContext.request.contextPath }/goodsClass.gdo?type=4">
 					<div class="left-title">
 						<h4>
 							<i>3F</i>
 						</h4>
 						<img
 							src="${ pageContext.request.contextPath }/res/static/img/icon_gou.png">
-						<h5>婴儿玩具</h5>
+						<h5>3F最新</h5>
 					</div>
+					</a>
 					<div class="right-cont">
-						<a href="javascript:;" class="top-img"><img
+						<a href="${ pageContext.request.contextPath }/goodsClass.gdo?type=4"  class="top-img"><img
 							src="${ pageContext.request.contextPath }/res/static/img/img12.jpg"
 							alt=""></a>
 						<div class="img-box" id="3f">

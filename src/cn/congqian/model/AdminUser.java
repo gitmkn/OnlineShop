@@ -18,6 +18,14 @@ public class AdminUser {
 	 * 用户密码
 	 */
 	private String password;
+	/**
+	 * 用户电话
+	 */
+	private String phone;
+	/**
+	 * 用户地址
+	 */
+	private String address;
 	
 	/**
 	 * 类型
@@ -58,11 +66,24 @@ public class AdminUser {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	@Override
 	public String toString() {
-		return "AdminUser [id=" + id + ", name=" + name + ", password=" + password + ", type=" + type + ", status="
-				+ status + "]";
+		return "AdminUser [id=" + id + ", name=" + name + ", password=" + password + ", phone=" + phone + ", address="
+				+ address + ", type=" + type + ", status=" + status + "]";
 	}
+	
 	
 	
 }

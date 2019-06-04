@@ -3,6 +3,7 @@ package cn.congqian.controller;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
+
+import cn.congqian.model.AdminUser;
 import cn.congqian.model.Message;
 import cn.congqian.model.User;
 import cn.congqian.service.FactoryService;
@@ -62,9 +66,10 @@ public class MessageController extends HttpServlet {
 			message.setUser_id(user_id);
 			message.setMessage_content(content);	
 			//将util时间转为sql时间
-			java.util.Date utilDate = new java.util.Date(); 
-			java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-			message.setCreatetime(sqlDate);
+//			java.util.Date utilDate = new java.util.Date(); 
+//			java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+			java.sql.Timestamp ctime = new java.sql.Timestamp(new java.util.Date().getTime());
+			message.setCreatetime(ctime);
 			System.out.println(message);
 			int mm = messageService.addMessage(message);
 			if(mm != 0) {
@@ -74,5 +79,21 @@ public class MessageController extends HttpServlet {
 				resp.sendRedirect(req.getContextPath()+"/jsp/message.jsp");
 			}
 		}
+	}
+	
+	
+	/**
+	 * 留言列表
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void messageSelect(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<Message> list = messageService.selectMessage();
+		System.out.println(list); 
+		resp.setCharacterEncoding("utf-8");
+		resp.getWriter().write(JSON.toJSONString(list));
 	}
 }

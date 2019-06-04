@@ -28,7 +28,7 @@
 						<th>入库单ID</th>
 						<th>入库时间</th>
 						<th>入库员</th>
-						<th>商品ID</th>
+						<th>商品名称</th>
 						<th>商品个数</th>
 						<th>供货商ID</th>
 						<th>入库单价</th>
@@ -56,9 +56,9 @@ $(function(){
 					+"<td>"+item.godown_id+"</td>"
 					+"<td>"+getMyDate(item.godown_date)+"</td>"
 					+"<td>"+item.godown_admin+"</td>"
+					+"<td>"+item.goods_name+"</td>"
 					+"<td>"+item.godown_sum+"</td>"
-					+"<td>"+item.goods_id+"</td>"
-					+"<td>"+item.supplier_id+"</td>"
+					+"<td>"+item.supplier_name+"</td>"
 					+"<td>"+item.price+"</td></tr>";
 				$("tbody").append(div);
 			})

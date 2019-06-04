@@ -2,6 +2,8 @@ package cn.congqian.dao;
 
 import java.util.List;
 
+import org.apache.jasper.tagplugins.jstl.core.If;
+
 import cn.congqian.model.Goods;
 import cn.congqian.model.GoodsPicture;
 
@@ -21,7 +23,7 @@ public class GoodsDaoImpl extends BaseDao<Goods> implements GoodsDao{
 	@Override
 	public Goods goodsSelectById(int id) {
 		// TODO Auto-generated method stub
-		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_id,t_goods_type.type_name,t_goods_picture.picture_url "
+		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_id,t_goods_type.type_name,t_goods_picture.picture_id,t_goods_picture.picture_url "
 				+ "from t_goods,t_goods_type,t_goods_picture "
 				+ "where t_goods.goods_type = t_goods_type.type_id "
 				+ "and t_goods.picture_id = t_goods_picture.picture_id "
@@ -74,10 +76,10 @@ public class GoodsDaoImpl extends BaseDao<Goods> implements GoodsDao{
 	}
 	
 	@Override
-	public int goodsPictureDelete(GoodsPicture goodsPicture) {
+	public int goodsPictureDelete(String goodsPicture) {
 		// TODO Auto-generated method stub
 		String sql = "delete from t_goods_picture where picture_id=?";
-		return super.update(sql, goodsPicture.getPicture_id());
+		return super.update(sql, goodsPicture);
 	}
 
 	@Override
@@ -98,9 +100,10 @@ public class GoodsDaoImpl extends BaseDao<Goods> implements GoodsDao{
 	public List<Goods> goodsBySearch(String content) {
 		// TODO Auto-generated method stub
 		String contents = "'%"+content+"%'";
-		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_name "
-				+ "from t_goods,t_goods_type "
+		String sql = "select goods_id,goods_name,goods_describe,goods_price,goods_createtime,goods_sum,goods_status,t_goods_type.type_name,t_goods_picture.picture_url "
+				+ "from t_goods,t_goods_type,t_goods_picture "
 				+ "where t_goods.goods_type = t_goods_type.type_id "
+				+ "and t_goods.picture_id = t_goods_picture.picture_id "
 				+ "and goods_name like "+contents+" "
 				+ "and goods_status = 1 "
 				+ "order by goods_createtime desc";

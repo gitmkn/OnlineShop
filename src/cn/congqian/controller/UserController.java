@@ -89,7 +89,7 @@ public class UserController extends HttpServlet {
 			user.setPassword(password1);
 			User user1 = userServer.userLogin(user);
 			HttpSession session = req.getSession();
-			System.out.println(user);
+			System.out.println(user1);
 			if (user1 != null) {
 				session.setAttribute("UserInfo", user1);
 				session.setAttribute("Userlogin", "login");

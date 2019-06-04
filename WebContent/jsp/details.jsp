@@ -33,16 +33,19 @@
         <div class="itemInfo-wrap">
           <div class="itemInfo">
             <div class="title">
-              <h4>${ goods.goods_name } </h4>
+              <h4>${ goods2.goods_name } </h4>
               <!-- <span><i class="layui-icon layui-icon-rate-solid"></i>收藏</span> -->
             </div>
             <div class="summary">
-              <p class="reference"><span>参考价</span> <del>￥99.00</del></p>
+              <p class="reference"><span>参考价</span> <del>￥${ goods.goods_price+20 }</del></p>
               <p class="activity"><span>活动价</span><strong class="price"><i>￥</i> ${ goods.goods_price }</strong></p>
-              <p class="address-box"><span>送&nbsp;&nbsp;&nbsp;&nbsp;至</span><strong class="address">${ Userinfo.address }</strong></p>
+              <p class="address-box"><span>送&nbsp;&nbsp;&nbsp;&nbsp;至</span><strong class="address">${ UserInfo.address }</strong></p>
+              
             </div>
             <div class="choose-attrs">
               <!-- <div class="color layui-clear"><span class="title">颜&nbsp;&nbsp;&nbsp;&nbsp;色</span> <div class="color-cont"><span class="btn">白色</span> <span class="btn active">粉丝</span></div></div> -->
+              <%-- <div class="number layui-clear"><span class="title">库存数量</span><span class="title">${ goods.goods_sum }</span></div> --%>
+              <p class="address-box"><span>库存数量</span>&nbsp;&nbsp;&nbsp;&nbsp;<strong class="address">${ goods.goods_sum }</strong></p><br>
               <div class="number layui-clear"><span class="title">数&nbsp;&nbsp;&nbsp;&nbsp;量</span><div class="number-cont"><span class="cut btn">-</span><input name="goods_sum" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" maxlength="4" type="" name="" value="1"><span class="add btn">+</span></div></div>
             </div>
             <div class="choose-btns">
@@ -104,7 +107,21 @@
       });
       
       $("#pay").click(function(){
-    	  window.document.location.href="${ pageContext.request.contextPath }/jsp/carpay2.jsp?";
+    	  var goods_sum = '${ goods.goods_sum }';
+    	  var userid = '${ UserInfo.id }'
+    	  var goods = '${ goods.goods_id }';
+    	  var goodssum = $('input[name=goods_sum]').val();
+    	  if(userid == null || userid == ""){
+    		  alert("请登录");
+    		  window.document.location.href="${ pageContext.request.contextPath }/jsp/login.jsp";
+    	  }else{
+    		  if(goods_sum - goodssum < 0){
+    			  alert("您选中的数量超出库存数量了");
+    		  }else{
+    			  window.document.location.href="${ pageContext.request.contextPath }/goodsPay.gdo?id="+goods+"&&sum="+goodssum;
+    		  }
+    	  }
+    	 
       });
   });
   

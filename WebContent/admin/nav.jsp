@@ -102,10 +102,10 @@
 								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/user/passwordUpdate.jsp" data-id="12">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">修改密码</span></a>
 								</li>
-								<!-- <li class="subnav-li" data-id="13">
-									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">安排管理2</span></a>
+								<li class="subnav-li" href="${ pageContext.request.contextPath }/admin/user/messageList.jsp" data-id="13">
+									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">留言列表</span></a>
 								</li>
-								<li class="subnav-li" data-id="14">
+								<!-- <li class="subnav-li" data-id="14">
 									<a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">类型选择2</span></a>
 								</li> -->
 							</ul>

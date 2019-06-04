@@ -264,6 +264,7 @@
       </div>
     </div>
   </div>
+<%@ include file="foot.jsp" %>
 <script>
 	/* $(function(){
 		$.ajax({

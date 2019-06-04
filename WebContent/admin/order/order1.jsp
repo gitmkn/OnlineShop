@@ -27,13 +27,13 @@
                         <label>条件查询：</label>
                         <div class="kv-item-content ue-clear">
                             <span class="choose">
-                                <span class="text"><input type="text" placeholder="请输入订单号或者用户电话号码查询" /></span>
+                                <span class="text"><input type="text" name="order" placeholder="请输入订单号查询" /></span>
                             </span>
                         </div>
                     </div>
                 </div></br>
                 <div class="search-button">
-                	<input class="button" type="button" value="搜索一下" />
+                	<input class="button" id="search" type="button" value="搜索一下" />
                 </div>
              </div></br>
             <h2 class="subfild">
@@ -86,7 +86,7 @@
         <table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<!-- <th>图片</th> -->
+					<th>图片</th>
 					<th>商品名称</th>
 					<th>商品数量</th>
 				</tr>
@@ -95,16 +95,55 @@
 				
 			</tbody>
 		</table>
-		<div class="buttons">
+		<!-- <div class="buttons">
            <button class="button" id="back">返回</button>
-        </div>
+        </div> -->
     </div>
 </div>
 </body>
 
 <script type="text/javascript">
-$("#back").click(function(){
-	window.location.href="${ pageContext.request.contextPath }/admin/order/orderList.jsp";
+$("#search").click(function(){
+	var order_id = $('input[name=order]').val();
+	$.ajax({
+		type:'get',
+		url:'${ pageContext.request.contextPath }/OrderSelectById.odo?order_id='+order_id,
+		dataType:'json',
+		success:function(data){
+			$("input[name=order_id]").val(order_id);
+			$("input[name=createtime]").val(data.order_createtime);
+			$("input[name=order_username]").val(data.order_username);
+			$("input[name=order_phone]").val(data.order_phone);
+			$("input[name=order_address]").val(data.order_address);
+			$("input[name=bankID]").val(data.order_bankID);
+		}
+	});
+	
+	$("tbody tr").remove();
+	$.ajax({
+		type:'get',
+		url:'${ pageContext.request.contextPath }/OrderDetailsByOrderId.odo?order_id='+order_id,
+		dataType: "json",
+		success:function(data){
+			$.each(data, function(index, item){
+				if(item.order_price == null) item.order_price = 0;
+				var div = "<tr>"
+					+"<td><img style='width:50px;height:50px;' src='${ pageContext.request.contextPath }/admin/goods/goodsImg/"+item.picture_url+"' /></td>"
+					+"<td>"+item.goods_name+"</td>"
+					+"<td>"+item.goods_sum+"</td></tr>";
+				$("tbody").append(div);
+			})
+		}
+	});
 });
+
+
+
+
+
+
+/* $("#back").click(function(){
+	window.location.href="${ pageContext.request.contextPath }/admin/order/orderList.jsp";
+}); */
 </script>
 </html>

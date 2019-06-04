@@ -24,7 +24,7 @@
       <h3>确认订单</h3>
     </div>
     <div class="cart w1200">
-    <form action="${ pageContext.request.contextPath }/Order.odo" method="post">
+    <form action="${ pageContext.request.contextPath }/Order2.odo" method="post">
 	  <input type="hidden" name="id" value="${ UserInfo.id }">
 	  <div class="layui-form-item">
 	    <label class="layui-form-label">收件人</label>
@@ -44,7 +44,7 @@
 	      <input type="text" name="address" value="${ UserInfo.address }" autocomplete="off" class="layui-input">
 	    </div>
 	  </div>
-	
+	 <input type="text" name="price" value="${ goods2.goods_price*goodssum }">
     <table class="layui-table">
     	<thead>
     		<tr>
@@ -54,21 +54,19 @@
     		</tr>
     	</thead>
     	<tbody>
-    		<c:forEach items="${ cartList }" var="list">
     		<tr>
     			<td>
 					<div class="item-cont">
-		                <a href="javascript:;"><img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/${ list.picture_url }" alt=""></a>
-		                <span>${ list.goods_name }</span>
+		                <a href="javascript:;"><img src="${ pageContext.request.contextPath }/admin/goods/goodsImg/${ goods2.picture_url }" alt=""></a>
+		                <span>${ goods2.goods_name }</span>
               		</div>
 				</td>
-				<td>${ list.goods_price }</td>
-				<td>${ list.goods_sum }</td>
+				<td>${ goods2.goods_price }</td>
+				<td>${ goodssum }</td>
     		</tr>
-    		</c:forEach>
     	</tbody>
     </table>
-    	<span>总计：${ pieces }</span>
+    	<span>总计：${ goods2.goods_price*goodssum }</span>
     	<button style="display: block;margin: auto;" class="layui-btn">提交订单</button>
     	</form>
     </div>

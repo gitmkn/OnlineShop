@@ -61,7 +61,7 @@ public class OrderController extends HttpServlet {
 			System.out.println("调用" + mn + "方法失败");
 		}
 	}
-	
+
 	/**
 	 * 供货商列表
 	 * 
@@ -78,7 +78,7 @@ public class OrderController extends HttpServlet {
 		resp.setCharacterEncoding("utf-8");
 		resp.getWriter().write(JSON.toJSONString(list));
 	}
-	
+
 	/**
 	 * 订单列表
 	 * 
@@ -87,7 +87,8 @@ public class OrderController extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	private void OrderListByUserId(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void OrderListByUserId(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 		int userid = Integer.parseInt(req.getParameter("userid"));
 		int status = Integer.parseInt(req.getParameter("status"));
 		List<OrderDetails> list = orderService.select(status, userid);
@@ -98,8 +99,7 @@ public class OrderController extends HttpServlet {
 		resp.setCharacterEncoding("utf-8");
 		resp.getWriter().write(JSON.toJSONString(list));
 	}
-	
-	
+
 	/**
 	 * 后台订单列表
 	 * 
@@ -108,7 +108,8 @@ public class OrderController extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	private void OrderListByStatus(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void OrderListByStatus(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 		int status = Integer.parseInt(req.getParameter("status"));
 		List<OrderDetails> list = orderService.OrderDetailsByStatus(status);
 		System.out.println(status);
@@ -117,7 +118,7 @@ public class OrderController extends HttpServlet {
 		resp.setCharacterEncoding("utf-8");
 		resp.getWriter().write(JSON.toJSONString(list));
 	}
-	
+
 	private void Order(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String username = req.getParameter("username");
 		String phone = req.getParameter("phone");
@@ -126,12 +127,27 @@ public class OrderController extends HttpServlet {
 		session.setAttribute("username", username);
 		session.setAttribute("phone", phone);
 		session.setAttribute("address", address);
-		System.out.println(username+phone+address);
+		System.out.println(username + phone + address);
 		resp.sendRedirect(req.getContextPath() + "/jsp/payment.jsp");
 	}
 
+	private void Order2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String username = req.getParameter("username");
+		String phone = req.getParameter("phone");
+		String address = req.getParameter("address");
+		String price = req.getParameter("price");
+		HttpSession session = req.getSession();
+		session.setAttribute("username", username);
+		session.setAttribute("phone", phone);
+		session.setAttribute("address", address);
+		session.setAttribute("price2", price);
+		System.out.println(username + phone + address);
+		resp.sendRedirect(req.getContextPath() + "/jsp/payment2.jsp");
+	}
+
 	/**
-	 * 订单列表
+	 * 订单添加
+	 * 
 	 * @param req
 	 * @param resp
 	 * @throws ServletException
@@ -145,6 +161,66 @@ public class OrderController extends HttpServlet {
 		String order_id = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 		java.sql.Timestamp createtime = new java.sql.Timestamp(new java.util.Date().getTime());
 		List<Cart> list = (List<Cart>) session.getAttribute("cartList");
+
+		Order order = new Order();
+		order.setOrder_id(order_id);
+		order.setUser_id(user.getId());
+		order.setOrder_createtime(createtime);
+		order.setOrder_bankID(uuid);
+		order.setOrder_status(1);
+		order.setOrder_username((String) session.getAttribute("username"));
+		order.setOrder_phone((String) session.getAttribute("phone"));
+		order.setOrder_address((String) session.getAttribute("address"));
+		int m = orderService.OrderAdd(order);
+
+		OrderDetails orderDetails = new OrderDetails();
+		orderDetails.setOrder_id(order_id);
+		for (int i = 0; i < list.size(); i++) {
+			orderDetails.setGoods_id(list.get(i).getGoods_id());
+			orderDetails.setGoods_sum(list.get(i).getGoods_sum());
+			// 添加订单
+			int n = orderService.OrderDetailsAdd(orderDetails);
+			// 删除购物车商品
+			int k = cartService.cartDele(list.get(i).getCar_id());
+			// 修改商品数量
+			System.out.println("shuliang" + list.get(i).getGoods_sum());
+			int p = goodsService.goodsUpdateSum(list.get(i).getGoods_id(), list.get(i).getGoods_sum());
+			if (n <= 0) {
+				resp.sendRedirect(req.getContextPath() + "/jsp/payment.jsp");
+			}
+			if (k <= 0) {
+				resp.sendRedirect(req.getContextPath() + "/jsp/payment.jsp");
+			}
+
+			if (p <= 0) {
+				resp.sendRedirect(req.getContextPath() + "/jsp/payment.jsp");
+			}
+		}
+		if (m > 0) {
+			resp.sendRedirect(req.getContextPath() + "/jsp/myOrder.jsp");
+		} else {
+			resp.sendRedirect(req.getContextPath() + "/jsp/payment.jsp");
+		}
+
+	}
+
+	/**
+	 * 订单添加
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void OrderAdd2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		String uuid = (String) session.getAttribute("orderuuid");
+		User user = (User) session.getAttribute("UserInfo");
+
+		String order_id = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		java.sql.Timestamp createtime = new java.sql.Timestamp(new java.util.Date().getTime());
+		Goods goods = (Goods) session.getAttribute("goods2");
+		int sum = (int)session.getAttribute("goodssum");
 		
 		Order order = new Order();
 		order.setOrder_id(order_id);
@@ -152,43 +228,41 @@ public class OrderController extends HttpServlet {
 		order.setOrder_createtime(createtime);
 		order.setOrder_bankID(uuid);
 		order.setOrder_status(1);
-		order.setOrder_username((String)session.getAttribute("username"));
-		order.setOrder_phone((String)session.getAttribute("phone"));
-		order.setOrder_address((String)session.getAttribute("address"));
+		order.setOrder_username((String) session.getAttribute("username"));
+		order.setOrder_phone((String) session.getAttribute("phone"));
+		order.setOrder_address((String) session.getAttribute("address"));
 		int m = orderService.OrderAdd(order);
-		
+
 		OrderDetails orderDetails = new OrderDetails();
 		orderDetails.setOrder_id(order_id);
-		for (int i = 0; i < list.size(); i++) {
-			orderDetails.setGoods_id(list.get(i).getGoods_id());
-			orderDetails.setGoods_sum(list.get(i).getGoods_sum());
-			//添加订单
-			int n = orderService.OrderDetailsAdd(orderDetails);
-			//删除购物车商品
-			int k = cartService.cartDele(list.get(i).getCar_id());
-			//修改商品数量
-			System.out.println("shuliang"+list.get(i).getGoods_sum());
-			int p = goodsService.goodsUpdateSum(list.get(i).getGoods_id(),list.get(i).getGoods_sum());
-			if(n <= 0) {
-				resp.sendRedirect(req.getContextPath() + "/jsp/payment.jsp");
-			}
-			if(k <= 0) {
-				resp.sendRedirect(req.getContextPath() + "/jsp/payment.jsp");
-			}
-			
-			if(p <= 0) {
-				resp.sendRedirect(req.getContextPath() + "/jsp/payment.jsp");
-			}
-		}
-		if(m > 0) {
-			resp.sendRedirect(req.getContextPath() + "/jsp/myOrder.jsp");
-		}else {
+
+		orderDetails.setGoods_id(goods.getGoods_id());
+		orderDetails.setGoods_sum(sum);
+		// 添加订单
+		int n = orderService.OrderDetailsAdd(orderDetails);
+		// 修改商品数量
+		
+		int p = goodsService.goodsUpdateSum(goods.getGoods_id(), sum);
+
+		if (n <= 0) {
 			resp.sendRedirect(req.getContextPath() + "/jsp/payment.jsp");
 		}
-		
+
+		if (p <= 0) {
+			resp.sendRedirect(req.getContextPath() + "/jsp/payment.jsp");
+		}
+
+		if (m > 0) {
+			resp.sendRedirect(req.getContextPath() + "/jsp/myOrder.jsp");
+		} else {
+			resp.sendRedirect(req.getContextPath() + "/jsp/payment.jsp");
+		}
+
 	}
+
 	/**
 	 * 订单修改
+	 * 
 	 * @param req
 	 * @param resp
 	 * @throws ServletException
@@ -199,7 +273,7 @@ public class OrderController extends HttpServlet {
 		String username = req.getParameter("order_username");
 		String phone = req.getParameter("order_phone");
 		String address = req.getParameter("order_address");
-		
+
 		Order order = new Order();
 		order.setOrder_id(order_id);
 		order.setOrder_username(username);
@@ -207,22 +281,24 @@ public class OrderController extends HttpServlet {
 		order.setOrder_address(address);
 		System.out.println(order);
 		int i = orderService.OrderUpdate(order);
-		if(i > 0) {
+		if (i > 0) {
 			resp.sendRedirect(req.getContextPath() + "/admin/order/orderList.jsp");
-		}else {
+		} else {
 			resp.sendRedirect(req.getContextPath() + "/admin/order/orderUpdate.jsp");
 		}
-		
+
 	}
-	
+
 	/**
 	 * 订单状态修改
+	 * 
 	 * @param req
 	 * @param resp
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	private void OrderUpdateById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void OrderUpdateById(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 		String order_id = req.getParameter("order_id");
 		int order_status = Integer.parseInt(req.getParameter("status"));
 		Order order = new Order();
@@ -230,9 +306,9 @@ public class OrderController extends HttpServlet {
 		order.setOrder_status(order_status);
 		int m = orderService.orderUpdateStatus(order);
 		resp.sendRedirect(req.getContextPath() + "/admin/order/orderList.jsp");
-		
+
 	}
-	
+
 	/**
 	 * id订单查询
 	 * 
@@ -241,14 +317,15 @@ public class OrderController extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	private void OrderSelectById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void OrderSelectById(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 		String order_id = req.getParameter("order_id");
 		Order order = orderService.orderSelectById(order_id);
-		 System.out.println(order);
+		System.out.println(order);
 		resp.setCharacterEncoding("utf-8");
 		resp.getWriter().write(JSON.toJSONString(order));
 	}
-	
+
 	/**
 	 * id订单查询详情
 	 * 
@@ -257,22 +334,25 @@ public class OrderController extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	private void OrderDetailsByOrderId(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void OrderDetailsByOrderId(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 		String order_id = req.getParameter("order_id");
 		List<OrderDetails> orderDetails = orderService.OrderDetailsByOrderId(order_id);
 		System.out.println(orderDetails);
 		resp.setCharacterEncoding("utf-8");
 		resp.getWriter().write(JSON.toJSONString(orderDetails));
 	}
-	
+
 	/**
 	 * 订单状态修改
+	 * 
 	 * @param req
 	 * @param resp
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	private void OrderUpdateStatus(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void OrderUpdateStatus(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 		String order_id = req.getParameter("order_id");
 		int order_status = Integer.parseInt(req.getParameter("status"));
 		Order order = new Order();
@@ -280,6 +360,6 @@ public class OrderController extends HttpServlet {
 		order.setOrder_status(order_status);
 		int m = orderService.orderUpdateStatus(order);
 		resp.sendRedirect(req.getContextPath() + "/jsp/myOrder.jsp");
-		
+
 	}
 }

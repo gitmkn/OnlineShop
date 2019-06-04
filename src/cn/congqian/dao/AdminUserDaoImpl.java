@@ -41,4 +41,11 @@ public class AdminUserDaoImpl extends BaseDao<AdminUser> implements AdminUserDao
 		String sql = "insert into t_admin(name,password,type,status) value(?,?,2,1)";
 		return super.update(sql, adminUser.getName(),adminUser.getPassword());
 	}
+	
+//	@Override
+//	public int insertAdmin(AdminUser adminUser) {
+//		// TODO Auto-generated method stub
+//		String sql = "insert into t_admin(name,password,phone,address,type,status) value(?,?,?,?,2,1)";
+//		return super.update(sql, adminUser.getName(),adminUser.getPassword(),adminUser.getPhone(),adminUser.getAddress());
+//	}
 }

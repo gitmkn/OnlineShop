@@ -13,6 +13,8 @@ public class OrderDetails {
 	
 	private int goods_sum;
 	
+	private String picture_url;
+	
 	private String order_id;
 	
 	private int usre_id;
@@ -85,11 +87,20 @@ public class OrderDetails {
 		this.username = username;
 	}
 
+	public String getPicture_url() {
+		return picture_url;
+	}
+
+	public void setPicture_url(String picture_url) {
+		this.picture_url = picture_url;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderDetails [details_id=" + details_id + ", goods_id=" + goods_id + ", goods_name=" + goods_name
-				+ ", goods_sum=" + goods_sum + ", order_id=" + order_id + ", usre_id=" + usre_id + ", order_createtime="
-				+ order_createtime + ", username=" + username + "]";
+				+ ", goods_sum=" + goods_sum + ", picture_url=" + picture_url + ", order_id=" + order_id + ", usre_id="
+				+ usre_id + ", order_createtime=" + order_createtime + ", username=" + username + "]";
 	}
+
 	
 }

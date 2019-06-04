@@ -268,6 +268,7 @@ public class GoodsAdminController extends HttpServlet {
 					else if(l <= 0){
 						l++;
 						String fileName = fileItem.getName();// 文件名称
+						
 						// System.out.println("原文件名：" + fileName);// Koala.jpg
 
 						// String suffix = fileName.substring(fileName.lastIndexOf('.'));
@@ -361,6 +362,7 @@ public class GoodsAdminController extends HttpServlet {
 				List<FileItem> fileItemList = sfu.parseRequest(req);
 				Iterator<FileItem> fileItems = fileItemList.iterator();
 				int l = 0;
+				String goodspicture = "";
 				// 4. 遍历list，每迭代一个FileItem对象，调用其isFormField方法判断是否是上传文件
 				while (fileItems.hasNext()) {
 					FileItem fileItem = fileItems.next();
@@ -387,51 +389,65 @@ public class GoodsAdminController extends HttpServlet {
 						if ("goods_describe".equals(name)) {
 							goods.setGoods_describe(value);
 						}
+						if ("goods_sum".equals(name)) {
+							goods.setGoods_sum(Integer.parseInt(value));
+						}
+						if ("goodspicture".equals(name)) {
+							goodspicture = value;
+						}
 						System.out.println(name + " = " + value);
 					}
 					// <input type="file">的上传文件的元素
 					else if(l <= 0){
 						l++;
 						String fileName = fileItem.getName();// 文件名称
-						// System.out.println("原文件名：" + fileName);// Koala.jpg
+						
+						if (fileName == "" || fileName == null) {
+							System.out.println("没有上传图片");
+							goods.setPicture_id(goodspicture);
+						}else {
+							// System.out.println("原文件名：" + fileName);// Koala.jpg
 
-						// String suffix = fileName.substring(fileName.lastIndexOf('.'));
-						// System.out.println("扩展名：" + suffix);// .jpg
+							// String suffix = fileName.substring(fileName.lastIndexOf('.'));
+							// System.out.println("扩展名：" + suffix);// .jpg
 
-						// 新文件名（唯一）
-						// String newFileName = new Date().getTime() + suffix;
-						String newFileName = new Date().getTime() + ".jpg";
-						// System.out.println("新文件名：" + newFileName);// image\1478509873038.jpg
+							// 新文件名（唯一）
+							// String newFileName = new Date().getTime() + suffix;
+							String newFileName = new Date().getTime() + ".jpg";
+							// System.out.println("新文件名：" + newFileName);// image\1478509873038.jpg
 
-						// 5. 调用FileItem的write()方法，写入文件
-						String path = req.getServletContext().getRealPath("/") + "admin/goods/goodsImg/";
-						 System.out.println(path);
-						// File file = new File(req.getServletContext().getRealPath("/admin/goodsImg") +
-						// "/" + newFileName);
-						File file = new File(path + newFileName);
-						// System.out.println(file.getAbsolutePath());
-						fileItem.write(file);
-						// 6. 调用FileItem的delete()方法，删除临时文件
-//						fileItem.delete();
+							// 5. 调用FileItem的write()方法，写入文件
+							String path = req.getServletContext().getRealPath("/") + "admin/goods/goodsImg/";
+							 System.out.println(path);
+							// File file = new File(req.getServletContext().getRealPath("/admin/goodsImg") +
+							// "/" + newFileName);
+							File file = new File(path + newFileName);
+							// System.out.println(file.getAbsolutePath());
+							fileItem.write(file);
+							// 6. 调用FileItem的delete()方法，删除临时文件
+//							fileItem.delete();
 
-						/*
-						 * 存储到数据库时注意 1.保存源文件名称 Koala.jpg 2.保存相对路径 image/1478509873038.jpg
-						 * 
-						 */
+							/*
+							 * 存储到数据库时注意 1.保存源文件名称 Koala.jpg 2.保存相对路径 image/1478509873038.jpg
+							 * 
+							 */
 
-						java.sql.Timestamp ctime = new java.sql.Timestamp(new java.util.Date().getTime());
-						goods.setGoods_createtime(ctime);
-						String uuid = UUID.randomUUID().toString();
+							
+							String uuid = UUID.randomUUID().toString();
 
-						goodsPicture.setPicture_id(uuid);
-						goodsPicture.setPicture_url(newFileName);
-						goods.setPicture_url(newFileName);
-						goods.setPicture_id(uuid);
-						goods.setGoods_status(1);
-						System.out.println(goods);
+							goodsPicture.setPicture_id(uuid);
+							goodsPicture.setPicture_url(newFileName);
+							goods.setPicture_url(newFileName);
+							goods.setPicture_id(uuid);
+							
+						}
+						
 					}
 
 				}
+				java.sql.Timestamp ctime = new java.sql.Timestamp(new java.util.Date().getTime());
+				goods.setGoods_createtime(ctime);
+				goods.setGoods_status(1);
 				System.out.println(goods);
 				System.out.println(goodsPicture);
 				int i = goodsService.goodsUpdate(goods, goodsPicture);

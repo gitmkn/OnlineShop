@@ -28,10 +28,11 @@ public class OrderDetailsDaoImpl extends BaseDao<OrderDetails> implements OrderD
 	@Override
 	public List<OrderDetails> OrderDetailsSelect(int userid, int stataus) {
 		// TODO Auto-generated method stub
-		String sql = "select d.details_id,d.order_id,d.goods_id,g.goods_name,d.goods_sum,o.order_createtime "
-				+ "from t_order_details d,t_order o,t_goods g "
+		String sql = "select d.details_id,d.order_id,d.goods_id,g.goods_name,d.goods_sum,o.order_createtime,p.picture_url "
+				+ "from t_order_details d,t_order o,t_goods g,t_goods_picture p "
 				+ "where d.order_id = o.order_id "
 				+ "and g.goods_id = d.goods_id "
+				+ "and g.picture_id = p.picture_id "
 				+ "and o.user_id = ? and order_status = ?";
 		return super.getList(sql, userid,stataus);
 	}
@@ -39,7 +40,7 @@ public class OrderDetailsDaoImpl extends BaseDao<OrderDetails> implements OrderD
 	@Override
 	public List<OrderDetails> OrderDetailsByStatus(int status) {
 		// TODO Auto-generated method stub
-		String sql = "select d.details_id,d.order_id,d.goods_id,g.goods_name,d.goods_sum,o.order_createtime,u.username "
+		String sql = "select d.details_id,d.order_id,d.goods_id,d.goods_name,d.goods_sum,o.order_createtime,u.username "
 				+ "from t_order_details d,t_order o,t_goods g,t_user u "
 				+ "where d.order_id = o.order_id "
 				+ "and g.goods_id = d.goods_id "
@@ -51,9 +52,10 @@ public class OrderDetailsDaoImpl extends BaseDao<OrderDetails> implements OrderD
 	@Override
 	public List<OrderDetails> OrderDetailsByOrderId(String order_id) {
 		// TODO Auto-generated method stub
-		String sql = "select * "
-				+ "from t_order_Details d,t_goods g "
+		String sql = "select d.details_id, d.goods_id, g.goods_name, d.goods_sum, p.picture_url,d.order_id "
+				+ "from t_order_Details d,t_goods g,t_goods_picture p "
 				+ "where d.goods_id = g.goods_id "
+				+ "and g.picture_id = p.picture_id "
 				+ "and order_id = ?";
 		return super.getList(sql, order_id);
 	}

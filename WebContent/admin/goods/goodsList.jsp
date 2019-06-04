@@ -110,7 +110,7 @@ $("#goodsstatus").click(function(){
 function update(a){
 	/* var getId = $(this).find("td:eq(0)").text();
 	alert(getId) */
-	window.location.href="goodsUpdate.jsp?getId="+a;
+	window.location.href="${ pageContext.request.contextPath }/admin/goods/goodsUpdate.jsp?getId="+a;
 };
 
 function addorder(a,b,c){
@@ -128,7 +128,7 @@ function updatestatus(a,b){
 };
 
 $('#add').on('click',function(){
-	window.location.href="goodsAdd.jsp";
+	window.location.href="${ pageContext.request.contextPath }/admin/goods/goodsAdd.jsp";
 });
 
 

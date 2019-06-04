@@ -59,7 +59,7 @@ public interface GoodsDao {
 	 * 修改商品图片
 	 * @return
 	 */
-	public int goodsPictureDelete(GoodsPicture goodsPicture);
+	public int goodsPictureDelete(String goodsPicture);
 	
 	/**
 	 * 修改商品状态

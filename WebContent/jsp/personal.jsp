@@ -37,6 +37,7 @@
       </div>
     </div>
   </div>
+  <%@ include file="foot.jsp" %>
 <script>
 
   layui.config({

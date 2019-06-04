@@ -1,6 +1,7 @@
 package cn.congqian.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Message {
 	/**
@@ -11,6 +12,12 @@ public class Message {
 	 * 留言人id
 	 */
 	private int user_id;
+	
+	/**
+	 * 留言人姓名
+	 */
+	private String username;
+	
 	/**
 	 * 留言内容
 	 */
@@ -18,7 +25,7 @@ public class Message {
 	/**
 	 * 留言时间
 	 */
-	private Date createtime;
+	private Timestamp createtime;
 	public int getMessage_id() {
 		return message_id;
 	}
@@ -37,16 +44,21 @@ public class Message {
 	public void setMessage_content(String message_content) {
 		this.message_content = message_content;
 	}
-	public Date getCreatetime() {
+	public Timestamp getCreatetime() {
 		return createtime;
 	}
-	public void setCreatetime(Date createtime) {
+	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	@Override
 	public String toString() {
-		return "Message [message_id=" + message_id + ", user_id=" + user_id + ", message_content=" + message_content
-				+ ", createtime=" + createtime + "]";
+		return "Message [message_id=" + message_id + ", user_id=" + user_id + ", username=" + username
+				+ ", message_content=" + message_content + ", createtime=" + createtime + "]";
 	}
-	
 }

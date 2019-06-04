@@ -25,10 +25,20 @@ public class Godown {
 	 * 商品id
 	 */
 	private int goods_id;
+	
+	/**
+	 * 商品名称
+	 */
+	private String goods_name;
 	/**
 	 * 供货商id
 	 */
 	private String supplier_id;
+	
+	/**
+	 * 供货商名称
+	 */
+	private String supplier_name;
 	/**
 	 * 供货商id
 	 */
@@ -76,11 +86,22 @@ public class Godown {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
+	public String getGoods_name() {
+		return goods_name;
+	}
+	public void setGoods_name(String goods_name) {
+		this.goods_name = goods_name;
+	}
+	public String getSupplier_name() {
+		return supplier_name;
+	}
+	public void setSupplier_name(String supplier_name) {
+		this.supplier_name = supplier_name;
+	}
 	@Override
 	public String toString() {
 		return "Godown [godown_id=" + godown_id + ", godown_date=" + godown_date + ", godown_sum=" + godown_sum
-				+ ", godown_admin=" + godown_admin + ", goods_id=" + goods_id + ", supplier_id=" + supplier_id
-				+ ", price=" + price + "]";
+				+ ", godown_admin=" + godown_admin + ", goods_id=" + goods_id + ", goods_name=" + goods_name
+				+ ", supplier_id=" + supplier_id + ", supplier_name=" + supplier_name + ", price=" + price + "]";
 	}
-	
 }

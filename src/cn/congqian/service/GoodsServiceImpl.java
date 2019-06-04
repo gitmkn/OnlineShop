@@ -71,16 +71,28 @@ public class GoodsServiceImpl implements GoodsService {
 			conn.setAutoCommit(false);// 开启事务
 			i = goodsDao.goodsUpdate(goods);
 			System.out.println("shiwu "+goodsPicture);
-			j = goodsDao.goodsPictureDelete(goodsPicture);
-			k = goodsDao.goodsPictureAdd(goodsPicture);
+			if(goodsPicture.getPicture_id() == null) {
+				System.out.println(goodsPicture.getPicture_id());
+				
+			}else {
+				j = goodsDao.goodsPictureDelete(goods.getPicture_id());
+				k = goodsDao.goodsPictureAdd(goodsPicture);
+			}
 			conn.commit();// 提交事务
-			if (i > 0 && j > 0 && k > 0) {
+			if (i > 0) {
 				return i+j;
 			}
 		} catch (Exception e) {
 			JdbcUtils.rollbackTransation(conn);// 回滚事务
 		}
 		return i+j;
+	}
+	@Override
+	public int goodsUpdate2(Goods goods, GoodsPicture goodsPicture) {
+		
+		// TODO Auto-generated method stub
+		int i = goodsDao.goodsUpdate(goods);
+		return i;
 	}
 
 	@Override

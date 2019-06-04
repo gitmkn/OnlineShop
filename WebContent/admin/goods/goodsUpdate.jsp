@@ -35,7 +35,9 @@ String getId = request.getParameter("getId");
             <h2 class="subfild">
             	<span>基本信息</span>
             </h2>
-            <input type="text" name="goods_id" value="<%=getId %>" />
+            <input type="hidden" name="goods_id" value="<%=getId %>" />
+            <input type="hidden" name="goodspicture" >
+            <input type="hidden" name="goods_sum" />
             <div class="subfild-content base-info">
             	<div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>商品名称</label>
@@ -80,7 +82,6 @@ String getId = request.getParameter("getId");
                     <span class="kv-item-tip">请正确填写商品价格</span>
                 </div>
                 
-                
                 <div class="kv-item ue-clear">
                 	<label><span class="impInfo">*</span>商品图</label>
                 	<div class="kv-item-content">
@@ -97,6 +98,7 @@ String getId = request.getParameter("getId");
                 	<div class="kv-item-content">
 						<span class="text"></span>
 						<img id="imgfile" src="" width="100" height="100">
+						
                     </div>
                     <!-- <span class="kv-item-tip">标题字数限制在35个字符</span> -->
                 </div>
@@ -119,6 +121,7 @@ String getId = request.getParameter("getId");
             </div>
             <div class="buttons">
                 <input type="button" class="button" value="确认添加" />
+                <a id="back">返回</a>
                 <span>${ addgoods }</span>
             </div>
         </div>
@@ -144,7 +147,7 @@ $(function(){
 	                    processData : false,
 	                    contentType : false,
 	                    success : function(path) {
-	                    	alert(path);
+	                    	/* alert(path); */
 	                        $('.summernote').summernote('insertImage',path);
 	                    },error:function(){
 	                        alert("上传失败");
@@ -176,6 +179,9 @@ $(function(){
 				$('body option[value='+data.type_id+']').attr("selected","selected");
 				$('input[name=goods_price]').val(data.goods_price);
 				$('#imgfile').attr('src','${ pageContext.request.contextPath }/admin/goods/goodsImg/'+data.picture_url);
+				$('input[name=goods_sum]').val(data.goods_sum);
+				$('input[name=goodspicture]').val(data.picture_id);
+				alert(data.picture_id);
 				/* $('input[name=uploadFile]').val(data.picture_url); */
 				$('.summernote').summernote('code',data.goods_describe);
 			}
@@ -187,7 +193,12 @@ $(function(){
 		var code1 = $('.summernote').summernote('code');
 		$("#summernote").val(code1);
 		$("#fm").submit();
-		alert(code1);
+		/* alert(code1); */
 	});
+	
+	
+$("#back").click(function(){
+	window.location.href="${ pageContext.request.contextPath }/admin/goods/goodsList.jsp";
+}); 
 </script>
 </html>

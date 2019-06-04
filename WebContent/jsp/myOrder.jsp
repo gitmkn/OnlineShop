@@ -34,6 +34,7 @@
 										<table class="layui-table">
 											<colgroup>
 												<col width="260">
+												<col width="200">
 												<col width="150">
 												<col width="200">
 												<col width="150">
@@ -42,6 +43,7 @@
 											<thead>
 												<tr>
 													<td>订单编号</td>
+													<td>图片</td>
 													<td>商品名称</td>
 													<td>商品个数</td>
 													<td>订单时间</td>
@@ -57,6 +59,7 @@
 											<colgroup>
 												<col >
 												<col width="150">
+												<col width="200">
 												<col width="150">
 												<col width="200">
 												<col width="100">
@@ -64,6 +67,7 @@
 											<thead>
 												<tr>
 													<td>订单编号</td>
+													<td>商品名称</td>
 													<td>商品</td>
 													<td>商品个数</td>
 													<td>订单时间</td>
@@ -81,6 +85,7 @@
 										<table class="layui-table">
 											<colgroup>
 												<col width="150">
+												<col width="200">
 												<col width="150">
 												<col width="200">
 												<col width="150">
@@ -89,6 +94,7 @@
 											<thead>
 												<tr>
 													<td>订单编号</td>
+													<td>商品名称</td>
 													<td>商品</td>
 													<td>商品个数</td>
 													<td>订单时间</td>
@@ -148,6 +154,7 @@
 						if(item.goods_name == null) item.goods_name = "";
 						var div = '<tr>'
 							+'<td>'+item.order_id+'</td>'
+							+'<td><img style="width:80px;height:80px;" src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'"/></td>'
 							+'<td>'+item.goods_name+'</td>'
 							+'<td>'+item.goods_sum+'</td>'
 							+'<td>'+getMyDate(item.order_createtime)+'</td>'
@@ -164,6 +171,7 @@
 						if(item.goods_name == null) item.goods_name = "";
 						var div = '<tr>'
 							+'<td>'+item.order_id+'</td>'
+							+'<td><img style="width:80px;height:80px;" src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'"/></td>'
 							+'<td>'+item.goods_name+'</td>'
 							+'<td>'+item.goods_sum+'</td>'
 							+'<td>'+getMyDate(item.order_createtime)+'</td>'
@@ -181,6 +189,7 @@
 						if(item.goods_name == null) item.goods_name = "";
 						var div = '<tr>'
 							+'<td>'+item.order_id+'</td>'
+							+'<td><img style="width:80px;height:80px;" src="${ pageContext.request.contextPath }/admin/goods/goodsImg/'+item.picture_url+'"/></td>'
 							+'<td>'+item.goods_name+'</td>'
 							+'<td>'+item.goods_sum+'</td>'
 							+'<td>'+getMyDate(item.order_createtime)+'</td>'

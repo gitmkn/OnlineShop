@@ -131,7 +131,7 @@ $(function(){
 	                    processData : false,
 	                    contentType : false,
 	                    success : function(path) {
-	                    	alert(path);
+	                    	/* alert(path); */
 	                        $('.summernote').summernote('insertImage',path);
 	                    },error:function(){
 	                        alert("上传失败");
@@ -157,7 +157,7 @@ $(function(){
 		var code1 = $('.summernote').summernote('code');
 		$("#summernote").val(code1);
 		$("#fm").submit();
-		alert(code1);
+		/* alert(code1); */
 	});
 </script>
 </html>

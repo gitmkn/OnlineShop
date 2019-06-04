@@ -96,7 +96,7 @@ String getSum = request.getParameter("getSum");
 		});
 	});
 	$(".button").click(function(){
-		alert($("#form").submit());
+		$("#form").submit();
 	});
 </script>
 </body>

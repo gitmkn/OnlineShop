@@ -2,6 +2,7 @@ package cn.congqian.controller;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSON;
 
@@ -117,10 +119,43 @@ public class GoodsController extends HttpServlet {
 		req.getRequestDispatcher("/jsp/details.jsp").forward(req, resp);
 	}
 	
+	private void goodsPay(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		String idtype = req.getParameter("id");
+		String goodssum = req.getParameter("sum");
+		
+		if(goodssum == null) goodssum = "1";
+		int sum = Integer.parseInt(goodssum);
+		BigDecimal a = new BigDecimal(sum);
+		System.out.println(goodssum);
+		System.out.println(idtype);
+		if(idtype == null) idtype="1";
+		int id = Integer.parseInt(idtype);
+		try {
+			Goods goods = goodsService.goodsSelectById(id);
+			session.setAttribute("goods2", goods);
+			session.setAttribute("goodssum", sum);
+			System.out.println(goods);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("查询商品时出错");
+		}
+		req.getRequestDispatcher("/jsp/carpay2.jsp").forward(req, resp);
+	}
+	
 	
 	private void goodsClass(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int type = Integer.parseInt(req.getParameter("type"));
 		String type1 = "";
+		if(type == 2) {
+			type1 = "1F最新玩具";
+		}
+		if(type == 3) {
+			type1 = "2F最新玩具";
+		}
+		if(type == 4) {
+			type1 = "3F最新玩具";
+		}
 		if(type == 6) {
 			type1 = "女孩玩具";
 		}
